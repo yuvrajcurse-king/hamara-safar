@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Credits | Hamara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Caveat:wght@400;500;600;700&family=Orbitron:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: #0a0705;
+  color: #e8dcc8;
+  font-family: 'Cinzel', serif;
+  overflow: hidden;
+  position: fixed;
+  background-image: url("assts/bg.webp");
+}
+
+audio { display: none; }
+
+/* ===== LIBRARY BACKGROUND ===== */
+#bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: url('assts/bg.webp') center/cover no-repeat;
+}
+#bg::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(180,120,40,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(139,0,0,0.08) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(10,7,5,0.3) 0%, rgba(10,7,5,0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Vignette */
+#bg::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(5,3,2,0.85) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Candle flicker overlay */
+.candle-glow {
+  position: fixed; inset: 0; z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 85%, rgba(255,160,60,0.08) 0%, transparent 35%),
+    radial-gradient(ellipse at 85% 70%, rgba(255,140,40,0.06) 0%, transparent 30%),
+    radial-gradient(ellipse at 50% 10%, rgba(255,180,80,0.04) 0%, transparent 40%);
+  animation: flicker 4s ease-in-out infinite alternate;
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+  25% { opacity: 0.92; }
+  75% { opacity: 0.88; }
+}
+
+/* Floating dust particles */
+.dust {
+  position: fixed; width: 2px; height: 2px;
+  background: rgba(255,200,100,0.3);
+  border-radius: 50%;
+  pointer-events: none; z-index: 3;
+  animation: dustFloat 8s ease-in-out infinite;
+}
+.dust:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.dust:nth-child(2) { top: 40%; left: 80%; animation-delay: -2s; width: 1px; height: 1px; }
+.dust:nth-child(3) { top: 60%; left: 25%; animation-delay: -4s; }
+.dust:nth-child(4) { top: 30%; left: 60%; animation-delay: -1s; width: 1.5px; height: 1.5px; }
+.dust:nth-child(5) { top: 70%; left: 70%; animation-delay: -3s; }
+.dust:nth-child(6) { top: 15%; left: 45%; animation-delay: -5s; width: 1px; height: 1px; }
+@keyframes dustFloat {
+  0%, 100% { transform: translate(0,0); opacity: 0.2; }
+  50% { transform: translate(10px,-15px); opacity: 0.5; }
+}
+
+/* ===== HOME BUTTON ===== */
+.home-btn {
+  position: fixed; top: 14px; left: 14px; z-index: 200;
+  padding: 8px 18px;
+  background: rgba(20,15,10,0.6);
+  border: 5px solid rgba(180,140,60,0.3);
+  color: rgba(236, 241, 245, 0.7);
+  font-family: 'Cinzel', serif;
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 2px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+.home-btn:hover {
+  border-color: #4c86c9;
+  color: #1c0570;
+  background: rgba(180,140,60,0.1);
+  box-shadow: 0 0 20px rgba(180,140,60,0.15);
+}
+
+/* ===== MAIN SCROLL ===== */
+#main-wrap {
+  position: fixed; inset: 0;
+  overflow-y: auto; z-index: 10;
+  padding: 20px 16px 60px;
+}
+#main-wrap::-webkit-scrollbar { width: 4px; }
+#main-wrap::-webkit-scrollbar-track { background: transparent; }
+#main-wrap::-webkit-scrollbar-thumb { background: rgba(180,140,60,0.3); border-radius: 2px; }
+
+/* ===== HEADER ===== */
+.header { text-align: center; padding: 40px 0 20px; position: relative; }
+.header .crest {
+  width: 60px; height: 60px; margin: 0 auto 16px;
+  opacity: 0.6;
+}
+.header .crest svg { width: 100%; height: 100%; }
+.header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(44px, 8vw, 80px);
+  background: linear-gradient(180deg, #f0d78c 0%, #c9a84c 50%, #8b6914 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 8px rgba(180,140,60,0.3));
+  line-height: 1;
+  letter-spacing: 2px;
+}
+.header .tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 6px;
+  color: rgba(180,160,120,0.5);
+  text-transform: uppercase; margin-top: 10px;
+  font-style: italic;
+}
+
+/* ===== ORNATE DIVIDER ===== */
+.ornate-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin: 24px auto; max-width: 400px;
+}
+.ornate-divider .od-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.4), transparent);
+}
+.ornate-divider .od-icon {
+  width: 32px; height: 32px;
+  position: relative; flex-shrink: 0;
+}
+.ornate-divider .od-icon svg { width: 100%; height: 100%; }
+
+/* ===== SECTION LABELS ===== */
+.sec-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 6px;
+  color: rgba(180,160,120,0.5);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 32px 0 18px;
+  position: relative;
+  font-weight: 600;
+}
+.sec-label::before, .sec-label::after {
+  content: ''; position: absolute; top: 50%;
+  width: 40px; height: 1px;
+}
+.sec-label::before { right: calc(50% + 60px); background: linear-gradient(90deg, transparent, rgba(180,140,60,0.3)); }
+.sec-label::after { left: calc(50% + 60px); background: linear-gradient(90deg, rgba(180,140,60,0.3), transparent); }
+
+/* ===== CREATOR CARD (PARCHMENT STYLE) ===== */
+.creator-wrap {
+  max-width: 440px; margin: 0 auto 24px;
+  padding: 36px 28px;
+  background:
+    linear-gradient(135deg, rgba(30,22,12,0.85), rgba(20,14,8,0.9)),
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  border: 1px solid rgba(180,140,60,0.2);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 30px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,220,150,0.05);
+}
+/* Ornate frame corners */
+.creator-wrap .frame-corner {
+  position: absolute; width: 24px; height: 24px;
+  border: 1px solid rgba(180,140,60,0.35);
+}
+.creator-wrap .frame-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.creator-wrap .frame-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.creator-wrap .frame-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.creator-wrap .frame-corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+/* Inner frame */
+.creator-wrap .frame-inner {
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(180,140,60,0.08);
+  pointer-events: none;
+}
+.creator-wrap .frame-inner::before,
+.creator-wrap .frame-inner::after {
+  content: ''; position: absolute; width: 12px; height: 12px;
+  border: 1px solid rgba(180,140,60,0.15);
+}
+.creator-wrap .frame-inner::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.creator-wrap .frame-inner::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.creator-wrap .badge {
+  display: inline-block; padding: 5px 16px;
+  background: rgba(180,140,60,0.08);
+  border: 1px solid rgba(180,140,60,0.2);
+  border-radius: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(200,170,100,0.7);
+  text-transform: uppercase; margin-bottom: 14px;
+  font-weight: 600;
+}
+.creator-wrap .name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(40px, 7vw, 64px);
+  color: #d4af37;
+  text-shadow: 0 0 30px rgba(180,140,60,0.25), 0 2px 4px rgba(0,0,0,0.5);
+  line-height: 1;
+}
+.creator-wrap .role {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 4px;
+  color: rgba(180,160,120,0.5);
+  text-transform: uppercase; margin-top: 8px;
+}
+.creator-wrap .desc {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: rgba(200,180,150,0.55);
+  margin-top: 12px; line-height: 1.5;
+}
+
+/* ===== HERO ROW ===== */
+.hero-row {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 18px;
+  max-width: 720px; margin: 0 auto 16px;
+}
+.hero-card {
+  flex: 1 1 240px; max-width: 350px;
+  padding: 26px 22px;
+  background: rgba(20,15,10,0.6);
+  border: 1px solid rgba(180,140,60,0.12);
+  border-radius: 3px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.25), transparent);
+}
+.hero-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.1), transparent);
+}
+.hero-card:hover {
+  border-color: rgba(180,140,60,0.25);
+  background: rgba(25,18,12,0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 30px rgba(180,140,60,0.06);
+}
+.hero-card .label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9px; letter-spacing: 5px;
+  color: rgba(180,160,120,0.45);
+  text-transform: uppercase; margin-bottom: 10px;
+  font-weight: 600;
+}
+.hero-card .name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 5.5vw, 48px);
+  color: rgba(240,215,140,0.95);
+  text-shadow: 0 0 20px rgba(180,140,60,0.15), 0 2px 6px rgba(0,0,0,0.4);
+  line-height: 1;
+}
+.hero-card .tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  color: rgba(200,180,150,0.45);
+  margin-top: 8px; line-height: 1.4;
+}
+
+/* ===== THANKS GRID ===== */
+.thanks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 640px; margin: 0 auto 24px;
+  padding: 0 10px;
+}
+.thanks-card {
+  padding: 22px 18px;
+  background: rgba(20,15,10,0.5);
+  border: 1px solid rgba(180,140,60,0.08);
+  border-radius: 3px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  position: relative;
+}
+.thanks-card::before {
+  content: '';
+  position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid rgba(180,140,60,0.04);
+  pointer-events: none;
+}
+.thanks-card:hover {
+  border-color: rgba(180,140,60,0.18);
+  background: rgba(25,18,12,0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+.thanks-card .role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9px; letter-spacing: 5px;
+  color: rgba(180,160,120,0.4);
+  text-transform: uppercase; margin-bottom: 8px;
+  font-weight: 600;
+}
+.thanks-card .name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(24px, 4vw, 36px);
+  color: rgba(240,215,140,0.9);
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(180,140,60,0.1);
+}
+.thanks-card .note {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: rgba(200,180,150,0.4);
+  margin-top: 6px; line-height: 1.3;
+}
+
+/* ===== QUOTE BOX (MANUSCRIPT STYLE) ===== */
+.quote-box {
+  max-width: 540px; margin: 32px auto;
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+  background: rgba(20,15,10,0.65);
+  border: 1px solid rgba(180,140,60,0.12);
+  backdrop-filter: blur(10px);
+}
+/* Heavy ornate corners */
+.quote-box .q-corner {
+  position: absolute; width: 30px; height: 30px;
+}
+.quote-box .q-corner svg { width: 100%; height: 100%; }
+.quote-box .q-corner.tl { top: -2px; left: -2px; }
+.quote-box .q-corner.tr { top: -2px; right: -2px; transform: scaleX(-1); }
+.quote-box .q-corner.bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+.quote-box .q-corner.br { bottom: -2px; right: -2px; transform: scale(-1); }
+
+/* Inner border */
+.quote-box .q-inner {
+  position: absolute; inset: 10px;
+  border: 1px solid rgba(180,140,60,0.06);
+  pointer-events: none;
+}
+
+.quote-box p {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(18px, 2.8vw, 24px);
+  color: rgba(220,195,150,0.7);
+  line-height: 1.7; font-style: italic;
+  position: relative; z-index: 2;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+.quote-box .author {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  color: rgba(180,160,120,0.4);
+  letter-spacing: 5px;
+  text-transform: uppercase; margin-top: 16px;
+  font-weight: 600;
+}
+
+/* ===== END BLOCK ===== */
+.end-block {
+  text-align: center;
+  padding: 40px 20px 30px;
+  position: relative;
+}
+.end-block .end-crest {
+  width: 50px; height: 50px; margin: 0 auto 20px;
+  opacity: 0.5;
+}
+.end-block .end-crest svg { width: 100%; height: 100%; }
+.end-block h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(36px, 6vw, 56px);
+  background: linear-gradient(180deg, #f0d78c 0%, #c9a84c 50%, #8b6914 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 6px rgba(180,140,60,0.2));
+  line-height: 1;
+}
+.end-block .line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.4), transparent);
+  margin: 16px auto;
+}
+.end-block p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  color: rgba(160,140,110,0.35);
+  letter-spacing: 5px;
+  text-transform: uppercase; line-height: 2;
+  font-weight: 600;
+}
+
+/* ===== BOTTOM ORNAMENT ===== */
+.bottom-ornament {
+  text-align: center;
+  margin: 20px 0;
+  opacity: 0.3;
+}
+.bottom-ornament svg { width: 120px; height: 20px; }
+
+/* ===== ANIMATIONS ===== */
+.reveal {
+  opacity: 0; transform: translateY(25px);
+  transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+  .thanks-grid { grid-template-columns: 1fr; gap: 12px; }
+  .hero-row { gap: 14px; }
+  .creator-wrap { padding: 28px 20px; }
+  .sec-label::before, .sec-label::after { width: 20px; }
+  .sec-label::before { right: calc(50% + 50px); }
+  .sec-label::after { left: calc(50% + 50px); }
+  .quote-box { padding: 30px 22px; }
+  .quote-box .q-corner { width: 24px; height: 24px; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/creadit.mp3" type="audio/mpeg">
+</audio>
+
+<div id="bg"></div>
+
+<!-- Candle glow overlay -->
+<div class="candle-glow"></div>
+
+<!-- Dust particles -->
+<div class="dust"></div>
+<div class="dust"></div>
+<div class="dust"></div>
+<div class="dust"></div>
+<div class="dust"></div>
+<div class="dust"></div>
+
+<a href="home.html" class="home-btn"><b>← Home</b></a>
+
+<div id="main-wrap">
+
+  <div class="header reveal">
+    <div class="crest">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 5L35 15H45L38 22L40 32L30 26L20 32L22 22L15 15H25L30 5Z" stroke="#c9a84c" stroke-width="0.8" fill="rgba(201,168,76,0.1)"/>
+        <circle cx="30" cy="30" r="18" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.4"/>
+        <path d="M30 12V48M12 30H48" stroke="#c9a84c" stroke-width="0.3" opacity="0.3"/>
+      </svg>
+    </div>
+    <h1>The Credits</h1>
+    <div class="tag">Hamara Safar — Ek Adhoori Dastaan</div>
+  </div>
+
+  <div class="ornate-divider reveal">
+    <div class="od-line"></div>
+    <div class="od-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L18 12H26L20 17L22 25L16 20L10 25L12 17L6 12H14L16 4Z" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.08)"/>
+        <circle cx="16" cy="16" r="4" stroke="#c9a84c" stroke-width="0.4" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="od-line"></div>
+  </div>
+
+  <div class="sec-label reveal"><b><h3>Website Crafted By</h3></b></div>
+  <div class="creator-wrap reveal">
+    <div class="frame-corner tl"></div>
+    <div class="frame-corner tr"></div>
+    <div class="frame-corner bl"></div>
+    <div class="frame-corner br"></div>
+    <div class="frame-inner"></div>
+    <div class="badge">Designer & Developer</div>
+    <div class="name">Yuvraj</div>
+    <div class="role">The Creator</div>
+    <div class="desc">"Jisne is kahaani ko digital roop diya —<br>har pixel mein pyaar, har animation mein jaan."</div>
+  </div>
+
+  <div class="ornate-divider reveal">
+    <div class="od-line"></div>
+    <div class="od-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L18 12H26L20 17L22 25L16 20L10 25L12 17L6 12H14L16 4Z" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.08)"/>
+        <circle cx="16" cy="16" r="4" stroke="#c9a84c" stroke-width="0.4" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="od-line"></div>
+  </div>
+
+  <div class="sec-label reveal"><b><h3>Written & Inspired By</h3></b></div>
+  <div class="hero-row">
+    <div class="hero-card reveal">
+      <div class="label">Author & Storyteller</div>
+      <div class="name">Mrityunjay</div>
+      <div class="tagline">"Jay" — jisne ehsaason ko shabdon ka jadoo diya</div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="label">The Heart of the Story</div>
+      <div class="name">Shree</div>
+      <div class="tagline">Jiski ek muskaan ne umar bhar ki yaad bana di</div>
+    </div>
+  </div>
+
+  <div class="ornate-divider reveal">
+    <div class="od-line"></div>
+    <div class="od-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L18 12H26L20 17L22 25L16 20L10 25L12 17L6 12H14L16 4Z" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.08)"/>
+        <circle cx="16" cy="16" r="4" stroke="#c9a84c" stroke-width="0.4" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="od-line"></div>
+  </div>
+
+  <div class="sec-label reveal"><b><h3>Special Thanks</h3></b></div>
+  <div class="thanks-grid">
+    <div class="thanks-card reveal">
+      <div class="role">Best Friend</div>
+      <div class="name">Piyu</div>
+      <div class="note">Jo hamesha saath tha</div>
+    </div>
+    <div class="thanks-card reveal">
+      <div class="role">Sister Figure</div>
+      <div class="name">Soniya</div>
+      <div class="note">Har match mein support</div>
+    </div>
+    <div class="thanks-card reveal">
+      <div class="role">The Coach</div>
+      <div class="name">Sir</div>
+      <div class="note">Zindagi ki seekh di</div>
+    </div>
+    <div class="thanks-card reveal">
+      <div class="role">The Gang</div>
+      <div class="name">Class Friends</div>
+      <div class="note">Yaadgar safar ke saathi</div>
+    </div>
+  </div>
+
+  <div class="ornate-divider reveal">
+    <div class="od-line"></div>
+    <div class="od-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L18 12H26L20 17L22 25L16 20L10 25L12 17L6 12H14L16 4Z" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.08)"/>
+        <circle cx="16" cy="16" r="4" stroke="#c9a84c" stroke-width="0.4" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="od-line"></div>
+  </div>
+
+  <div class="quote-box reveal">
+    <div class="q-corner tl">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2V12H4V4H12V2H2Z" stroke="#c9a84c" stroke-width="0.8" fill="rgba(201,168,76,0.1)"/>
+        <path d="M6 6V10H8V8H10V6H6Z" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="q-corner tr">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2V12H4V4H12V2H2Z" stroke="#c9a84c" stroke-width="0.8" fill="rgba(201,168,76,0.1)"/>
+        <path d="M6 6V10H8V8H10V6H6Z" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="q-corner bl">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2V12H4V4H12V2H2Z" stroke="#c9a84c" stroke-width="0.8" fill="rgba(201,168,76,0.1)"/>
+        <path d="M6 6V10H8V8H10V6H6Z" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="q-corner br">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2V12H4V4H12V2H2Z" stroke="#c9a84c" stroke-width="0.8" fill="rgba(201,168,76,0.1)"/>
+        <path d="M6 6V10H8V8H10V6H6Z" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="q-inner"></div>
+    <p><b><h3>Kuch log sirf kahani mein nahi,<br>balki zindagi mein bhi khaas hote hain.<br>Unhi ke liye toh likhi jaati hain yeh dastaanein.</h3></b></p>
+    <div class="author">— Jay</div>
+  </div>
+
+  <div class="bottom-ornament reveal">
+    <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 10H45M75 10H120" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+      <path d="M50 10L55 5L60 10L65 5L70 10" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
+      <circle cx="60" cy="10" r="3" stroke="#c9a84c" stroke-width="0.5" fill="rgba(201,168,76,0.1)"/>
+    </svg>
+  </div>
+
+  <div class="end-block reveal">
+    <div class="end-crest">
+      <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25 5L30 18H42L33 26L36 39L25 31L14 39L17 26L8 18H20L25 5Z" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.08)"/>
+        <circle cx="25" cy="25" r="20" stroke="#c9a84c" stroke-width="0.4" stroke-dasharray="3 3" opacity="0.3"/>
+      </svg>
+    </div>
+    <h2>The End</h2>
+    <div class="line"></div>
+    <p><b><h3>Hamara Safar — Ek Adhoori Dastaan<br>Arc 1 Complete</h3></b></p>
+  </div>
+
+</div>
+
+<script>
+  const bgMusic = document.getElementById('bgMusic');
+  let musicStarted = false;
+  function startMusic() {
+    if (!musicStarted && bgMusic) {
+      bgMusic.muted = false;
+      bgMusic.play().catch(() => {});
+      musicStarted = true;
+    }
+  }
+  ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, startMusic, { once: true });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

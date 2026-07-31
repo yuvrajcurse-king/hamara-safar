@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: #050202;
+  color: #f0e6d8;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== DOMAIN BARRIER BACKGROUND ===== */
+#domain-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(139,0,0,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(60,10,10,0.4) 0%, #050202 70%);
+}
+
+/* ===== SHARINGAN CANVAS ===== */
+#sharingan-canvas {
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ===== FIRE EMBERS ===== */
+.ember {
+  position: fixed; border-radius: 50%;
+  background: #e62020;
+  box-shadow: 0 0 6px #ff3300, 0 0 12px #ff6600;
+  pointer-events: none; z-index: 2;
+  animation: emberRise linear infinite;
+}
+@keyframes emberRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.4; }
+  100% { transform: translateY(-110vh) scale(0.2); opacity: 0; }
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, rgba(5,2,2,0.95) 0%, transparent 100%);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 4px;
+  color: #e62020;
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(230,32,32,0.4);
+}
+.nav-back {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 2px;
+  color: rgba(240,230,216,0.4);
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+}
+.nav-back:hover { color: #e62020; border-color: rgba(230,32,32,0.3); }
+
+/* ===== HERO: DOMAIN EXPANSION ===== */
+.domain-hero {
+  position: relative; z-index: 10;
+  min-height: 55vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 24px 40px;
+}
+
+/* Sharingan Eye in center */
+.domain-eye {
+  width: 120px; height: 120px;
+  position: relative;
+  margin-bottom: 24px;
+}
+.domain-eye svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 0 20px rgba(230,32,32,0.5));
+  animation: eyePulse 3s ease-in-out infinite;
+}
+@keyframes eyePulse {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(230,32,32,0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 35px rgba(230,32,32,0.7)); transform: scale(1.05); }
+}
+
+.domain-hero .domain-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 6px;
+  color: rgba(230,32,32,0.5);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.domain-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 9vw, 80px);
+  color: #e62020;
+  letter-spacing: 8px;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(230,32,32,0.3), 0 0 60px rgba(139,0,0,0.2);
+}
+.domain-hero .location {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: clamp(13px, 2.2vw, 18px);
+  color: rgba(230,32,32,0.45);
+  margin-top: 14px;
+  letter-spacing: 3px;
+}
+.domain-hero .subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(17px, 2.8vw, 24px);
+  color: rgba(240,230,216,0.4);
+  margin-top: 16px;
+  max-width: 480px;
+  line-height: 1.4;
+}
+
+/* ===== DIVIDER WITH TOMOE ===== */
+.tomoe-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+  position: relative; z-index: 10;
+}
+.tomoe-divider .td-line {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230,32,32,0.3), transparent);
+}
+.tomoe-divider .td-orb {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #e62020;
+  box-shadow: 0 0 8px rgba(230,32,32,0.5);
+  animation: orbPulse 2s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* ===== UPI SECTION ===== */
+.upi-section {
+  position: relative; z-index: 10;
+  max-width: 440px; margin: 0 auto;
+  padding: 20px 24px 40px;
+  text-align: center;
+}
+.upi-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 5px;
+  color: rgba(230,32,32,0.5);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* Barrier Card */
+.barrier-card {
+  background: rgba(10,4,4,0.85);
+  border: 1px solid rgba(230,32,32,0.12);
+  border-radius: 50%;
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  aspect-ratio: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.barrier-card::before {
+  content: '';
+  position: absolute; inset: 12px;
+  border: 1px dashed rgba(230,32,32,0.08);
+  border-radius: 50%;
+  animation: barrierSpin 20s linear infinite;
+}
+.barrier-card::after {
+  content: '';
+  position: absolute; inset: 24px;
+  border: 1px solid rgba(230,32,32,0.06);
+  border-radius: 50%;
+  animation: barrierSpin 15s linear infinite reverse;
+}
+@keyframes barrierSpin {
+  100% { transform: rotate(360deg); }
+}
+
+.barrier-card .qr-area {
+  width: 140px; height: 140px;
+  border: 2px dashed rgba(230,32,32,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  position: relative; z-index: 2;
+  animation: qrGlow 3s ease-in-out infinite;
+}
+@keyframes qrGlow {
+  0%, 100% { border-color: rgba(230,32,32,0.1); box-shadow: 0 0 0 rgba(230,32,32,0); }
+  50% { border-color: rgba(230,32,32,0.3); box-shadow: 0 0 20px rgba(230,32,32,0.06); }
+}
+.barrier-card .qr-area span {
+  font-size: 10px;
+  color: rgba(230,32,32,0.25);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.barrier-card .upi-label {
+  font-size: 10px;
+  color: rgba(240,230,216,0.3);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.barrier-card .upi-id {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: #e62020;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: all;
+  position: relative; z-index: 2;
+}
+.barrier-card .upi-id:hover {
+  color: #ff4444;
+  text-shadow: 0 0 20px rgba(230,32,32,0.4);
+}
+.barrier-card .copy-hint {
+  font-size: 10px;
+  color: rgba(240,230,216,0.2);
+  margin-bottom: 20px;
+  position: relative; z-index: 2;
+}
+
+.pay-apps {
+  display: flex; gap: 8px;
+  position: relative; z-index: 2;
+}
+.pay-app-btn {
+  padding: 8px 16px;
+  background: rgba(230,32,32,0.05);
+  border: 1px solid rgba(230,32,32,0.1);
+  border-radius: 4px;
+  font-size: 11px;
+  color: rgba(240,230,216,0.5);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.pay-app-btn:hover {
+  background: rgba(230,32,32,0.1);
+  border-color: rgba(230,32,32,0.25);
+  color: #e62020;
+}
+
+/* ===== AMOUNTS: TOMOE RINGS ===== */
+.amounts-section {
+  position: relative; z-index: 10;
+  max-width: 600px; margin: 0 auto;
+  padding: 30px 24px;
+  text-align: center;
+}
+.amounts-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 4px;
+  color: rgba(230,32,32,0.4);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.amounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.amount-ring {
+  position: relative;
+  padding: 20px 10px;
+  background: rgba(10,4,4,0.5);
+  border: 1px solid rgba(230,32,32,0.08);
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  aspect-ratio: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.amount-ring::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border: 1px dashed rgba(230,32,32,0.06);
+  border-radius: 50%;
+  animation: ringSpin 12s linear infinite;
+}
+@keyframes ringSpin {
+  100% { transform: rotate(360deg); }
+}
+.amount-ring:hover {
+  border-color: rgba(230,32,32,0.2);
+  background: rgba(230,32,32,0.04);
+  transform: scale(1.05);
+}
+.amount-ring:hover::before {
+  border-color: rgba(230,32,32,0.12);
+}
+.amount-ring .amt-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #e62020;
+  line-height: 1;
+  position: relative; z-index: 2;
+}
+.amount-ring .amt-label {
+  font-family: 'Caveat', cursive;
+  font-size: 12px;
+  color: rgba(240,230,216,0.3);
+  margin-top: 4px;
+  position: relative; z-index: 2;
+}
+
+/* ===== MESSAGE ===== */
+.message-section {
+  position: relative; z-index: 10;
+  max-width: 520px; margin: 0 auto;
+  padding: 30px 24px 50px;
+  text-align: center;
+}
+.message-box {
+  border: 1px solid rgba(230,32,32,0.06);
+  padding: 28px 24px;
+  background: rgba(10,4,4,0.3);
+  position: relative;
+}
+.message-box::before, .message-box::after {
+  content: '"';
+  position: absolute;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 50px;
+  color: rgba(230,32,32,0.05);
+  line-height: 1;
+}
+.message-box::before { top: 6px; left: 14px; }
+.message-box::after { bottom: -12px; right: 14px; }
+.message-box p {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: clamp(15px, 2.5vw, 19px);
+  color: rgba(240,230,216,0.5);
+  line-height: 1.8;
+  position: relative; z-index: 2;
+}
+.message-box .msg-author {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 3px;
+  color: rgba(230,32,32,0.35);
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+/* ===== SRINAGAR ===== */
+.srinagar {
+  text-align: center;
+  padding: 0 24px 40px;
+  position: relative; z-index: 10;
+}
+.srinagar .leaf {
+  font-size: 22px;
+  margin-bottom: 6px;
+  opacity: 0.5;
+  animation: leafSway 4s ease-in-out infinite;
+}
+@keyframes leafSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+.srinagar p {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  color: rgba(230,32,32,0.25);
+  letter-spacing: 1px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 30px 24px;
+  position: relative; z-index: 10;
+}
+.footer .f-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, #e62020, transparent);
+  margin: 0 auto 16px;
+}
+.footer p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 4px;
+  color: rgba(240,230,216,0.15);
+  text-transform: uppercase;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+  .amounts-grid { grid-template-columns: repeat(2, 1fr); }
+  .barrier-card { padding: 36px 24px; }
+  .barrier-card .qr-area { width: 120px; height: 120px; }
+  .domain-eye { width: 90px; height: 90px; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div id="domain-bg"></div>
+<canvas id="sharingan-canvas"></canvas>
+
+<!-- Embers -->
+<div class="ember" style="width:3px;height:3px;left:8%;bottom:0;animation-duration:7s;animation-delay:0s;"></div>
+<div class="ember" style="width:2px;height:2px;left:20%;bottom:0;animation-duration:9s;animation-delay:1s;"></div>
+<div class="ember" style="width:4px;height:4px;left:35%;bottom:0;animation-duration:6s;animation-delay:2s;"></div>
+<div class="ember" style="width:2px;height:2px;left:48%;bottom:0;animation-duration:8s;animation-delay:0.5s;"></div>
+<div class="ember" style="width:3px;height:3px;left:62%;bottom:0;animation-duration:10s;animation-delay:3s;"></div>
+<div class="ember" style="width:2px;height:2px;left:75%;bottom:0;animation-duration:7s;animation-delay:1.5s;"></div>
+<div class="ember" style="width:3px;height:3px;left:88%;bottom:0;animation-duration:9s;animation-delay:4s;"></div>
+<div class="ember" style="width:2px;height:2px;left:15%;bottom:0;animation-duration:11s;animation-delay:2.5s;"></div>
+<div class="ember" style="width:4px;height:4px;left:55%;bottom:0;animation-duration:8s;animation-delay:5s;"></div>
+<div class="ember" style="width:2px;height:2px;left:42%;bottom:0;animation-duration:12s;animation-delay:3.5s;"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">HAMARA SAFAR</a>
+  <a href="index.html" class="nav-back">← Home</a>
+</nav>
+<audio id="bgMusic" loop autoplay muted>
+    <source src="assts/index.mp3" type="audio/mpeg">
+</audio>
+<!-- Domain Hero -->
+<section class="domain-hero">
+  <div class="domain-eye reveal">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#8B0000" stroke-width="1" opacity="0.6"/>
+      <!-- Inner ring -->
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#8B0000" stroke-width="0.5" opacity="0.4"/>
+      <!-- Main eye circle -->
+      <circle cx="50" cy="50" r="38" fill="#1a0505" stroke="#e62020" stroke-width="1.5"/>
+      <!-- Inner dark -->
+      <circle cx="50" cy="50" r="30" fill="#0d0202"/>
+      <!-- Pupil -->
+      <circle cx="50" cy="50" r="8" fill="#e62020"/>
+      <!-- Tomoe 1 -->
+      <path d="M50 18 Q58 22 56 30 Q50 26 50 18" fill="#e62020" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="8s" repeatCount="indefinite"/>
+      </path>
+      <!-- Tomoe 2 -->
+      <path d="M50 18 Q58 22 56 30 Q50 26 50 18" fill="#e62020" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="120 50 50" to="480 50 50" dur="8s" repeatCount="indefinite"/>
+      </path>
+      <!-- Tomoe 3 -->
+      <path d="M50 18 Q58 22 56 30 Q50 26 50 18" fill="#e62020" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="240 50 50" to="600 50 50" dur="8s" repeatCount="indefinite"/>
+      </path>
+      <!-- Center dot -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+    </svg>
+  </div>
+
+  <div class="domain-tag reveal">Domain Expansion</div>
+  <h1 class="reveal">INFINITE SUPPORT</h1>
+  <div class="location reveal">India</div>
+  <p class="subtitle reveal">
+    "Yahaa har ek rupee<br>
+    ek naye sapne ki shuruaat hai."
+  </p>
+</section>
+
+<div class="tomoe-divider reveal">
+  <div class="td-line"></div>
+  <div class="td-orb"></div>
+  <div class="td-line"></div>
+</div>
+
+<!-- UPI Section -->
+<section class="upi-section">
+  <div class="upi-tag reveal">Barrier · UPI Only</div>
+
+  <div class="barrier-card reveal">
+    <div class="qr-area">
+      <span>QR CODE</span>
+    </div>
+    <div class="upi-label">UPI ID</div>
+    <div class="upi-id" onclick="copyUPI()">9608887592@ybl</div>
+    <div class="copy-hint">Tap to copy</div>
+    <div class="pay-apps">
+      <a href="#" class="pay-app-btn">GPay</a>
+      <a href="#" class="pay-app-btn">PhonePe</a>
+      <a href="#" class="pay-app-btn">Paytm</a>
+    </div>
+  </div>
+</section>
+
+<!-- Amounts -->
+<section class="amounts-section">
+  <div class="amounts-title reveal">Select Your Chakra</div>
+  <div class="amounts-grid reveal">
+    <div class="amount-ring">
+      <div class="amt-num">₹51</div>
+      <div class="amt-label">Shagun</div>
+    </div>
+    <div class="amount-ring">
+      <div class="amt-num">₹101</div>
+      <div class="amt-label">Blessing</div>
+    </div>
+    <div class="amount-ring">
+      <div class="amt-num">₹251</div>
+      <div class="amt-label">Dost</div>
+    </div>
+    <div class="amount-ring">
+      <div class="amt-num">₹501</div>
+      <div class="amt-label">Yaar</div>
+    </div>
+    <div class="amount-ring">
+      <div class="amt-num">₹1001</div>
+      <div class="amt-label">Legend</div>
+    </div>
+    <div class="amount-ring">
+      <div class="amt-num">Your choise</div>
+      <div class="amt-label">Any</div>
+    </div>
+  </div>
+</section>
+
+<!-- Message -->
+<section class="message-section">
+  <div class="message-box reveal">
+    <p>
+        For you allways
+    </p>
+    <div class="msg-author">— Yuvraj & Mrityunjay</div>
+  </div>
+</section>
+
+<!-- Srinagar -->
+<div class="srinagar reveal">
+    <u><b><i>INSPIRED FROM:---</i></b></u><br>
+  <div class="leaf"><u><b><i>INSPIRED FROM:---</i></b></u><br> "Utpal Kant Sir" <br>&<br> "Mantosh Sir" <br>&<br> "Rahul Sir" <br> and <br> "Sonali Ma'am"</div>
+  <p><br> 
+      "Abhi safar lamba hai, <br>
+       Abhi hausla zinda hai, <br>
+       Jo aaj tujhe thukraate hai, <br>
+       Kal wahi tujh par fakhr karenge."
+  <br></p>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="f-line"></div>
+  <p>Dhanyawaad · Hamara Safar</p>
+</footer>
+
+<script>
+// ===== SHARINGAN CANVAS =====
+const canvas = document.getElementById('sharingan-canvas');
+const ctx = canvas.getContext('2d');
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Concentric rings
+let rings = [];
+for (let i = 0; i < 5; i++) {
+  rings.push({
+    r: 80 + i * 60,
+    speed: (0.2 + i * 0.1) * (i % 2 === 0 ? 1 : -1),
+    opacity: 0.04 - i * 0.005
+  });
+}
+
+// Tomoe particles
+let tomoes = [];
+for (let i = 0; i < 12; i++) {
+  tomoes.push({
+    angle: (Math.PI * 2 / 12) * i,
+    dist: 100 + Math.random() * 200,
+    speed: 0.002 + Math.random() * 0.003,
+    size: 2 + Math.random() * 3
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  const cx = w / 2;
+  const cy = h / 2;
+
+  // Draw rings
+  rings.forEach(ring => {
+    ctx.beginPath();
+    ctx.arc(cx, cy, ring.r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(230, 32, 32, ${ring.opacity})`;
+    ctx.lineWidth = 0.5;
+    ctx.setLineDash([8, 16]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ring.r += ring.speed;
+    if (ring.r > Math.max(w, h) * 0.8) ring.r = 80;
+    if (ring.r < 60) ring.r = Math.max(w, h) * 0.7;
+  });
+
+  // Draw tomoes
+  tomoes.forEach(t => {
+    const x = cx + Math.cos(t.angle) * t.dist;
+    const y = cy + Math.sin(t.angle) * t.dist;
+    ctx.beginPath();
+    ctx.arc(x, y, t.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(230, 32, 32, 0.15)`;
+    ctx.fill();
+    t.angle += t.speed;
+  });
+
+  // Center glow
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 150);
+  grad.addColorStop(0, 'rgba(139, 0, 0, 0.03)');
+  grad.addColorStop(1, 'transparent');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Copy UPI
+copyUPI = function() {
+  const upi = document.querySelector('.upi-id').textContent;
+  navigator.clipboard.writeText(upi).then(() => {
+    const el = document.querySelector('.upi-id');
+    const orig = el.textContent;
+    el.textContent = 'Copied!';
+    el.style.color = '#ff4444';
+    setTimeout(() => {
+      el.textContent = orig;
+      el.style.color = '';
+    }, 1500);
+  }).catch(() => {
+    const el = document.querySelector('.upi-id');
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    const orig = el.textContent;
+    el.textContent = 'Copied!';
+    setTimeout(() => { el.textContent = orig; }, 1500);
+  });
+};
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const bgMusic = document.getElementById('bgMusic');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted && bgMusic) {
+        bgMusic.muted = false;
+        bgMusic.play().catch(() => {});
+        musicStarted = true;
+      }
+    }
+
+    // Unmute on any click, touch, or key press
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, startMusic, { once: true });
+    });
+</script>
+
+</body>
+</html>

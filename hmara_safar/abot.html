@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LORD YUVRAJ | Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;500;700;900&family=Caveat:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: #000;
+  color: #e8dcc8;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.home-btn {
+      position: fixed; top: 18px; left: 18px;
+      z-index: 100;
+      padding: 10px 20px;
+      background: rgba(30,25,20,0.85);
+      border: 1.5px solid rgba(255,200,100,0.35);
+      color: rgba(255,220,160,0.9);
+      font-family: 'Cinzel', serif; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+      border-color: #ffd700; color: #ffd700;
+      box-shadow: 0 0 20px rgba(255,180,80,0.25);
+}
+
+/* ===== BACKGROUND ===== */
+#bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: url("assts/bg.webp") center/cover no-repeat;
+}
+#bg::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,180,60,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(180,60,20,0.06) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+}
+#bg::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+}
+
+/* ===== PARTICLES ===== */
+#particles {
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== SCANLINE ===== */
+.scanline {
+  position: fixed; inset: 0; z-index: 100;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+@keyframes scanline {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ===== GLITCH TEXT ===== */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.glitch-wrapper::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff0000;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+.glitch-wrapper::after {
+  left: -2px;
+  text-shadow: -2px 0 #00ffff;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+@keyframes glitch-anim-1 {
+  0% { clip: rect(20px, 9999px, 15px, 0); }
+  20% { clip: rect(60px, 9999px, 70px, 0); }
+  40% { clip: rect(20px, 9999px, 50px, 0); }
+  60% { clip: rect(10px, 9999px, 80px, 0); }
+  80% { clip: rect(50px, 9999px, 20px, 0); }
+  100% { clip: rect(30px, 9999px, 60px, 0); }
+}
+@keyframes glitch-anim-2 {
+  0% { clip: rect(60px, 9999px, 80px, 0); }
+  20% { clip: rect(10px, 9999px, 30px, 0); }
+  40% { clip: rect(80px, 9999px, 20px, 0); }
+  60% { clip: rect(30px, 9999px, 60px, 0); }
+  80% { clip: rect(70px, 9999px, 40px, 0); }
+  100% { clip: rect(20px, 9999px, 70px, 0); }
+}
+
+/* ===== MAIN WRAP ===== */
+#main-wrap {
+  position: relative; z-index: 10;
+  padding: 0 20px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.hero-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 6px;
+  color: rgba(255,180,60,0.5);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255,180,60,0.2);
+  padding: 8px 24px;
+  background: rgba(255,180,60,0.03);
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge::before {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,180,60,0.1), transparent);
+  animation: badgeShine 3s infinite;
+}
+@keyframes badgeShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.hero h1 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(32px, 8vw, 80px);
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 12px;
+  line-height: 1.1;
+  text-shadow:
+    0 0 20px rgba(255,180,60,0.5),
+    0 0 60px rgba(255,100,0,0.3),
+    0 4px 8px rgba(0,0,0,0.8);
+  margin-bottom: 10px;
+}
+.hero h1 .small {
+  font-size: 0.4em;
+  letter-spacing: 8px;
+  display: block;
+  color: rgba(255,200,100,0.6);
+  margin-bottom: 8px;
+}
+
+.hero .subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(20px, 3vw, 32px);
+  color: rgba(255,200,150,0.5);
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* Typing cursor */
+.typing-text::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #ffd700;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Profile image frame */
+.profile-frame {
+  position: relative;
+  width: 200px; height: 200px;
+  margin: 0 auto 40px;
+}
+.profile-frame .frame-ring {
+  position: absolute; inset: -10px;
+  border: 1px solid rgba(255,180,60,0.2);
+  border-radius: 50%;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+.profile-frame .frame-ring:nth-child(2) {
+  inset: -20px;
+  border-color: rgba(255,180,60,0.1);
+  animation-delay: -1.5s;
+}
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+}
+.profile-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(255,180,60,0.3);
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Scroll indicator */
+.scroll-down {
+  position: absolute; bottom: 40px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px;
+}
+.scroll-down span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 4px;
+  color: rgba(255,180,60,0.3);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, rgba(255,180,60,0.4), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 0.8; }
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  max-width: 900px; margin: 0 auto;
+  padding: 80px 0;
+}
+.sec-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 5px;
+  color: rgba(255,180,60,0.4);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sec-title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  color: #ffd700;
+  letter-spacing: 4px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  color: rgba(200,190,170,0.5);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ===== STATS GRID (RPG Style) ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 50px;
+}
+.stat-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,180,60,0.08);
+  padding: 24px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.stat-box:hover {
+  border-color: rgba(255,180,60,0.25);
+  background: rgba(255,180,60,0.03);
+  transform: translateY(-4px);
+}
+.stat-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,180,60,0.3), transparent);
+}
+.stat-box .stat-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: #ffd700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-box .stat-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(200,190,170,0.4);
+  text-transform: uppercase;
+}
+
+/* ===== SKILLS BARS ===== */
+.skills-wrap {
+  margin-top: 50px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.skill-row {
+  display: flex; align-items: center; gap: 16px;
+}
+.skill-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(200,190,170,0.6);
+  width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.skill-bar-bg {
+  flex: 1; height: 6px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,180,60,0.3), rgba(255,180,60,0.8));
+  border-radius: 3px;
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.skill-bar-fill::after {
+  content: '';
+  position: absolute; right: 0; top: -2px;
+  width: 10px; height: 10px;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,180,60,0.5);
+}
+.skill-percent {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: rgba(255,180,60,0.6);
+  width: 40px;
+  text-align: right;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  margin-top: 50px;
+  padding-left: 30px;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(255,180,60,0.3), rgba(255,180,60,0.05));
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 40px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -34px; top: 4px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 10px rgba(255,180,60,0.4);
+}
+.timeline-item .t-date {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px; letter-spacing: 3px;
+  color: rgba(255,180,60,0.5);
+  margin-bottom: 6px;
+}
+.timeline-item .t-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: #e8dcc8;
+  margin-bottom: 6px;
+}
+.timeline-item .t-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: rgba(200,190,170,0.4);
+  line-height: 1.5;
+}
+
+/* ===== QUOTE BLOCK ===== */
+.quote-block {
+  max-width: 700px; margin: 60px auto;
+  padding: 50px 40px;
+  border: 1px solid rgba(255,180,60,0.1);
+  position: relative;
+  text-align: center;
+  background: rgba(255,255,255,0.01);
+}
+.quote-block::before,
+.quote-block::after {
+  content: '"';
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 80px;
+  color: rgba(255,180,60,0.08);
+  line-height: 1;
+}
+.quote-block::before { top: 10px; left: 20px; }
+.quote-block::after { bottom: -20px; right: 20px; }
+.quote-block p {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(20px, 3vw, 28px);
+  color: rgba(255,200,150,0.6);
+  line-height: 1.6;
+  position: relative; z-index: 2;
+}
+.quote-block .q-author {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(255,180,60,0.3);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 80px 20px 60px;
+}
+.footer .f-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,180,60,0.3), transparent);
+  margin: 0 auto 30px;
+}
+.footer h3 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(24px, 5vw, 48px);
+  color: #ffd700;
+  letter-spacing: 8px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.footer p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(200,190,170,0.3);
+  text-transform: uppercase;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .skill-name { width: 90px; font-size: 11px; }
+  .quote-block { padding: 40px 24px; }
+  .hero h1 { letter-spacing: 6px; }
+  .profile-frame { width: 160px; height: 160px; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+  <a href="home.html" class="home-btn">🏠 Home</a>
+<div id="bg"></div>
+<canvas id="particles"></canvas>
+<div class="scanline"></div>
+
+<div id="main-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge reveal">System.Init // Creator_Profile</div>
+
+    <div class="profile-frame reveal reveal-delay-1">
+      <div class="frame-ring"></div>
+      <div class="frame-ring"></div>
+      <img src="assts/ME.webp" loading="lazy" alt="LORD YUVRAJ">
+    </div>
+
+    <h1 class="reveal reveal-delay-2">
+      <span class="small">The Architect Behind</span>
+      <span class="glitch-wrapper" data-text="LORD YUVRAJ">LORD YUVRAJ</span>
+    </h1>
+
+    <p class="subtitle reveal reveal-delay-3">
+      <span class="typing-text" id="typeText"></span>
+    </p>
+
+    <div class="scroll-down reveal reveal-delay-4">
+      <span>Scroll to Decode</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="sec-tag reveal">Player_Stats</div>
+    <h2 class="sec-title reveal">THE NUMBERS</h2>
+    <p class="sec-desc reveal">Every legend has metrics. Here are mine.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box reveal reveal-delay-1">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% Passion</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-2">
+        <div class="stat-num" data-target="99">0</div>
+        <div class="stat-label">% Dedication</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-3">
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">Vision</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-1">
+        <div class="stat-num" data-target="6">0</div>
+        <div class="stat-label">Characters Born</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-2">
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">Epic Story</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-3">
+        <div class="stat-num" data-target="0">0</div>
+        <div class="stat-label">Regrets</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="sec-tag reveal">Skill_Tree</div>
+    <h2 class="sec-title reveal">ABILITIES</h2>
+    <p class="sec-desc reveal">The tools that forged this world.</p>
+
+    <div class="skills-wrap">
+      <div class="skill-row reveal">
+        <span class="skill-name">HTML / CSS</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div>
+        <span class="skill-percent">95%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-1">
+        <span class="skill-name">JavaScript</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+        <span class="skill-percent">88%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-2">
+        <span class="skill-name">Design</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
+        <span class="skill-percent">92%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-3">
+        <span class="skill-name">Storytelling</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="98"></div></div>
+        <span class="skill-percent">98%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-4">
+        <span class="skill-name">Creativity</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="100"></div></div>
+        <span class="skill-percent">MAX</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="sec-tag reveal">Chronicle_Log</div>
+    <h2 class="sec-title reveal">THE JOURNEY</h2>
+    <p class="sec-desc reveal">From idea to reality. Every step mattered.</p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="t-date">PHASE 01</div>
+        <div class="t-title">The Spark</div>
+        <div class="t-desc">Ek kahaani sochi — "Hamara Safar" ka pehla khayal aaya.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="t-date">PHASE 02</div>
+        <div class="t-title">Character Design</div>
+        <div class="t-desc">Jay, Shree, Piyush, Yuvraj, Vishu, Soniya — 6 zindagiyaan likhi gayi.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="t-date">PHASE 03</div>
+        <div class="t-title">World Building</div>
+        <div class="t-desc">, Bihar — ek duniya banayi gayi jismein ye sab rehte hain.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="t-date">PHASE 04</div>
+        <div class="t-title">Digital Forge</div>
+        <div class="t-desc">Har pixel, har animation, har page — sab kuch code se banaya gaya.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="t-date">PHASE 05</div>
+        <div class="t-title">Arc 1 Complete</div>
+        <div class="t-desc">"Ek Adhoori Dastaan" — pehla arc complete. Abhi aur baki hai.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-block reveal">
+    <p>Maine sirf ek website nahi banayi...<br>maine ek duniya banayi hai.<br>Har character meri soch, har page mera ehsaas.</p>
+    <div class="q-author">— LORD YUVRAJ</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="f-line"></div>
+    <h3 class="reveal">HAMARA SAFAR</h3>
+    <p class="reveal reveal-delay-1">Crafted with obsession by LORD YUVRAJ</p>
+  </footer>
+
+</div>
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/index.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ===== PARTICLES =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.4;
+    this.speedY = (Math.random() - 0.5) * 0.4;
+    this.opacity = Math.random() * 0.6 + 0.1;
+    this.life = Math.random() * 100 + 100;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.life--;
+    if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.reset();
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 180, 60, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  // Connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(255, 180, 60, ${0.06 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+    // ===== AUTO UNMUTE MUSIC ON FIRST INTERACTION =====
+    const bgMusic = document.getElementById('bgMusic');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted && bgMusic) {
+        bgMusic.muted = false;
+        bgMusic.play().catch(() => {});
+        musicStarted = true;
+      }
+    }
+
+    // Unmute on any click, touch, or key press
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, startMusic, { once: true });
+    });
+
+
+// ===== TYPING EFFECT =====
+const phrases = [
+  "Creator. Developer. Dreamer.",
+  "Architect of Hamara Safar.",
+  "Turning code into emotions.",
+  "LORD YUVRAJ."
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typeElement = document.getElementById('typeText');
+
+function type() {
+  const current = phrases[phraseIndex];
+  if (isDeleting) {
+    typeElement.textContent = current.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typeElement.textContent = current.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typeSpeed = isDeleting ? 50 : 80;
+  if (!isDeleting && charIndex === current.length) {
+    typeSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typeSpeed = 500;
+  }
+  setTimeout(type, typeSpeed);
+}
+type();
+
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate skill bars
+      const bars = entry.target.querySelectorAll('.skill-bar-fill');
+      bars.forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        if (w) bar.style.width = w + '%';
+      });
+      // Animate numbers
+      const nums = entry.target.querySelectorAll('.stat-num');
+      nums.forEach(num => {
+        const target = parseInt(num.getAttribute('data-target'));
+        if (target !== undefined && !num.classList.contains('counted')) {
+          num.classList.add('counted');
+          animateNumber(num, target);
+        }
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function animateNumber(el, target) {
+  let current = 0;
+  const increment = target / 60;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current);
+  }, 25);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hamara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #0a0000;
+    font-family: 'Cinzel', serif;
+    position: fixed;
+  }
+
+  /* ===== FIXED CANVAS ===== */
+  canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* ===== FIXED SCENE CONTAINER ===== */
+  #scene {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 2.8s ease;
+    z-index: 2;
+  }
+
+  /* ===== FIXED GROUND GLOW ===== */
+  .ground-glow {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: radial-gradient(ellipse at 50% 100%,
+      rgba(180, 40, 0, 0.45) 0%,
+      rgba(120, 20, 0, 0.2) 40%,
+      transparent 70%);
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ===== FLAME CONTAINER (CENTERED FIXED) ===== */
+  .flame-box {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 250px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .flame {
+    position: absolute;
+    bottom: 12%;
+    width: 58px;
+    height: 160px;
+    background: radial-gradient(ellipse at 50% 85%,
+      #fff 0%,
+      #ffe082 12%,
+      #ff9800 35%,
+      #e65100 60%,
+      #b71c1c 85%,
+      transparent 100%);
+    clip-path: polygon(
+      48% 0%, 62% 12%, 78% 28%, 88% 48%,
+      82% 72%, 65% 90%, 50% 100%,
+      35% 90%, 18% 72%, 12% 48%, 22% 28%, 38% 12%
+    );
+    filter: blur(1.5px);
+    animation: flicker 0.22s infinite alternate ease-in-out;
+    transform-origin: 50% 100%;
+  }
+
+  .flame:nth-child(1) { left: 30px; height: 145px; animation-delay: 0.05s; }
+  .flame:nth-child(2) { left: 110px; height: 195px; width: 65px; animation-delay: 0.12s; }
+  .flame:nth-child(3) { left: 200px; height: 175px; animation-delay: 0.02s; }
+  .flame:nth-child(4) { left: 300px; height: 220px; width: 72px; animation-delay: 0.18s; }
+  .flame:nth-child(5) { left: 400px; height: 185px; animation-delay: 0.08s; }
+  .flame:nth-child(6) { left: 490px; height: 155px; animation-delay: 0.15s; }
+  .flame:nth-child(7) { left: 580px; height: 170px; width: 60px; animation-delay: 0.03s; }
+
+  @keyframes flicker {
+    0%   { transform: scaleY(1) scaleX(1) rotate(-1.5deg); opacity: 0.92; }
+    100% { transform: scaleY(1.12) scaleX(1.06) rotate(2deg); opacity: 1; }
+  }
+
+  /* ===== HEART (FIXED CENTER) ===== */
+  #heart-wrap {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 28px;
+    animation: heartbeat 1.35s ease-in-out infinite;
+    z-index: 4;
+  }
+
+  #heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(145deg, #9b0000, #5c0000);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    box-shadow:
+      0 0 25px rgba(255, 40, 40, 0.7),
+      0 0 60px rgba(180, 0, 0, 0.4),
+      inset 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  #heart::before,
+  #heart::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    background: inherit;
+    border-radius: 50%;
+  }
+  #heart::before { top: -55px; left: 0; }
+  #heart::after  { left: 55px; top: 0; }
+
+  #crack {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 130px;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      #fff 8%,
+      #ffe0e0 25%,
+      #fff 50%,
+      #ffe0e0 75%,
+      #fff 92%,
+      transparent 100%);
+    clip-path: polygon(
+      45% 0%, 85% 12%, 35% 25%, 90% 38%,
+      25% 52%, 80% 68%, 30% 82%, 70% 95%,
+      40% 100%, 10% 88%, 55% 72%, 5% 55%,
+      50% 40%, 15% 25%, 60% 12%, 20% 0%
+    );
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px #fff, 0 0 25px rgba(255,200,200,0.6);
+    opacity: 0.95;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%      { transform: scale(1.08); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.06); }
+    70%      { transform: scale(1); }
+  }
+
+  /* ===== TITLE & SUBTITLE (FIXED) ===== */
+  #title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(48px, 8vw, 88px);
+    color: #ffd700;
+    text-shadow:
+      0 0 8px #ffd700,
+      0 0 25px rgba(255, 140, 0, 0.8),
+      0 0 50px rgba(255, 60, 0, 0.5),
+      0 2px 4px rgba(0,0,0,0.6);
+    letter-spacing: 4px;
+    margin-top: 8px;
+    opacity: 0.95;
+    z-index: 4;
+    text-align: center;
+  }
+
+  #subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 1.5vw, 14px);
+    letter-spacing: 6px;
+    color: rgba(255, 210, 140, 0.7);
+    margin-top: 10px;
+    text-transform: uppercase;
+    z-index: 4;
+    text-align: center;
+  }
+
+  /* ===== BUTTON (FIXED CENTER) ===== */
+  .continue-btn {
+    margin-top: 32px;
+    display: inline-block;
+    padding: 14px 36px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(12px, 1.5vw, 15px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffd700;
+    text-decoration: none;
+    border: 1.5px solid rgba(255, 215, 0, 0.55);
+    border-radius: 40px;
+    background: rgba(80, 10, 0, 0.45);
+    backdrop-filter: blur(6px);
+    box-shadow:
+      0 0 15px rgba(255, 100, 0, 0.25),
+      inset 0 0 12px rgba(255, 180, 50, 0.1);
+    transition: all 0.35s ease;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+  }
+
+  .continue-btn:hover {
+    background: rgba(120, 20, 0, 0.7);
+    border-color: #ffd700;
+    color: #fff8e1;
+    box-shadow:
+      0 0 25px rgba(255, 140, 0, 0.5),
+      0 0 40px rgba(255, 60, 0, 0.3);
+    transform: translateY(-3px);
+  }
+
+  /* ===== VIGNETTE ===== */
+  .vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+      transparent 40%,
+      rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* ===== RESPONSIVE FLAMES ===== */
+  @media (max-width: 750px) {
+    .flame-box { transform: translateX(-50%) scale(0.65); bottom: -30px; }
+  }
+  @media (max-width: 480px) {
+    .flame-box { transform: translateX(-50%) scale(0.45); bottom: -50px; }
+    #heart-wrap { transform: scale(0.85); margin-bottom: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== BACKGROUND MUSIC (AUTOPLAY) ===== -->
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/index.mp3" type="audio/mpeg">
+</audio>
+
+  <canvas id="c"></canvas>
+
+  <div id="scene">
+    <div class="ground-glow"></div>
+
+    <div class="flame-box">
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+      <div class="flame"></div>
+    </div>
+
+    <div id="heart-wrap">
+      <div id="heart"></div>
+      <div id="crack"></div>
+    </div>
+
+    <div id="title">Hamara Safar</div>
+    <div id="subtitle">written with love</div>
+
+    <a href="home.html" class="continue-btn">Continue your journey with us</a>
+  </div>
+
+  <div class="vignette"></div>
+
+<script>
+  // ===== AUTO UNMUTE MUSIC ON FIRST INTERACTION =====
+  const bgMusic = document.getElementById('bgMusic');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted && bgMusic) {
+      bgMusic.muted = false;
+      bgMusic.play().catch(() => {});
+      musicStarted = true;
+    }
+  }
+
+  // Unmute on any click, touch, or key press
+  ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, startMusic, { once: true });
+  });
+
+  // ===== CANVAS PARTICLES =====
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const particles = [];
+  const COUNT = 280;
+
+  function createParticle() {
+    return {
+      x: canvas.width * 0.5 + (Math.random() - 0.5) * canvas.width * 0.7,
+      y: canvas.height + 20,
+      size: 3 + Math.random() * 7,
+      vx: (Math.random() - 0.5) * 1.4,
+      vy: -1.2 - Math.random() * 3.5,
+      life: 70 + Math.random() * 90,
+      maxLife: 0,
+      alpha: 0.6 + Math.random() * 0.4
+    };
+  }
+
+  for (let i = 0; i < COUNT; i++) {
+    const p = createParticle();
+    p.maxLife = p.life;
+    p.y = Math.random() * canvas.height;
+    particles.push(p);
+  }
+
+  let frame = 0;
+
+  function animate() {
+    ctx.fillStyle = 'rgba(8, 0, 0, 0.18)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life--;
+
+      const progress = p.life / p.maxLife;
+      const size = p.size * (0.4 + progress * 0.6);
+
+      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size);
+      gradient.addColorStop(0, `rgba(255, 255, 240, ${p.alpha * progress})`);
+      gradient.addColorStop(0.35, `rgba(255, 160, 40, ${p.alpha * progress * 0.7})`);
+      gradient.addColorStop(1, 'rgba(180, 20, 0, 0)');
+
+      ctx.beginPath();
+      ctx.fillStyle = gradient;
+      ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (p.life <= 0 || p.y < -20) {
+        Object.assign(p, createParticle());
+        p.maxLife = p.life;
+      }
+    }
+
+    frame++;
+    if (frame === 160) {
+      document.getElementById('scene').style.opacity = '1';
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+</body>
+</html>

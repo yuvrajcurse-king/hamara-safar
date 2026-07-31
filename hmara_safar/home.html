@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google-site-verification" content="uion5WNch9h6-pp2L2T7Br9IuoVVIJFRvC3g2KTVRjA" />
+<title>HAMSAFAR HOME</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+  position: fixed;
+  cursor: default;
+}
+
+/* ===== FIXED CANVAS ===== */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ===== FIXED MAIN CONTAINER ===== */
+#main-wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* ===== FIXED TITLE BLOCK ===== */
+#title {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.title-main {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(36px, 6.5vw, 68px);
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 8px;
+  line-height: 1.2;
+  text-shadow:
+    0 0 10px #ffd700,
+    0 0 30px rgba(255, 160, 0, 0.9),
+    0 0 60px rgba(255, 100, 0, 0.6),
+    0 0 100px rgba(255, 60, 0, 0.3),
+    0 4px 8px rgba(0,0,0,0.7);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.title-sub {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 4.5vw, 48px);
+  color: #ffecb3;
+  letter-spacing: 3px;
+  margin-top: 12px;
+  text-shadow:
+    0 0 12px rgba(255, 200, 80, 0.8),
+    0 0 30px rgba(255, 140, 0, 0.5),
+    0 2px 4px rgba(0,0,0,0.6);
+  opacity: 0.95;
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow:
+      0 0 10px #ffd700,
+      0 0 30px rgba(255, 160, 0, 0.9),
+      0 0 60px rgba(255, 100, 0, 0.6),
+      0 0 100px rgba(255, 60, 0, 0.3),
+      0 4px 8px rgba(0,0,0,0.7);
+  }
+  100% {
+    text-shadow:
+      0 0 15px #ffe066,
+      0 0 40px rgba(255, 180, 0, 1),
+      0 0 80px rgba(255, 120, 0, 0.7),
+      0 0 120px rgba(255, 80, 0, 0.4),
+      0 4px 8px rgba(0,0,0,0.7);
+  }
+}
+
+/* ===== FIXED LANTERNS ===== */
+.lantern {
+  position: fixed;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.left-lantern {
+  top: -150px;
+  left: -150px;
+}
+
+.right-lantern {
+  top: -150px;
+  right: -150px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  pointer-events: auto;
+}
+
+.continue-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(12px, 1.5vw, 15px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd700;
+  text-decoration: none;
+  border: 1.5px solid rgba(255, 215, 0, 0.55);
+  border-radius: 40px;
+  background: rgba(80, 10, 0, 0.45);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 0 15px rgba(255, 100, 0, 0.25),
+    inset 0 0 12px rgba(255, 180, 50, 0.1);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-align: center;
+  min-width: 220px;
+}
+
+.continue-btn:hover {
+  background: rgba(120, 20, 0, 0.7);
+  border-color: #ffd700;
+  color: #fff8e1;
+  box-shadow:
+    0 0 25px rgba(255, 140, 0, 0.5),
+    0 0 40px rgba(255, 60, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE LANTERNS ===== */
+@media (max-width: 900px) {
+  .lantern { width: 350px; height: 350px; }
+  .left-lantern { top: -100px; left: -100px; }
+  .right-lantern { top: -100px; right: -100px; }
+}
+@media (max-width: 600px) {
+  .lantern { width: 250px; height: 250px; }
+  .left-lantern { top: -70px; left: -70px; }
+  .right-lantern { top: -70px; right: -70px; }
+  .title-main { letter-spacing: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== BACKGROUND MUSIC (AUTOPLAY) ===== -->
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/home_music.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="particles"></canvas>
+
+<div id="main-wrap">
+  <div id="title">
+    <div class="title-main">HAMARA SAFAR</div>
+    <div class="title-sub">Ek Adhuri Dastaan</div>
+  </div>
+
+  <div class="btn-wrap">
+    <a href="read.html" class="continue-btn">READ THE STORY</a>
+    <a href="credit.html" class="continue-btn">CREDITS</a>
+    <a href="chre.html" class="continue-btn">CHARACTERS</a>
+    <a href="abot.html" class="continue-btn">About creator of site</a>
+    <a href="about.html" class="continue-btn">About writer of Hamara Safar</a>
+    <a href="manga.html" class="continue-btn">Comic</a>
+    <a href="publish.html" class="continue-btn">Publish Your Work</a>
+    <a href="support.html" class="continue-btn">Donate For Poor chldrens</a>
+    <a href="https://www.instagram.com/jaystory_2605?igsh=ZWd1MHpkdW16ZW9j" class="continue-btn">Joinus on instagram</a>
+  </div>
+</div>
+
+<img src="assts/lalten.webp" class="lantern left-lantern" loading="lazy" alt="">
+<img src="assts/lalten.webp" class="lantern right-lantern" loading="lazy" alt="">
+
+<script>
+  // ===== AUTO UNMUTE MUSIC ON FIRST INTERACTION =====
+  const bgMusic = document.getElementById('bgMusic');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted && bgMusic) {
+      bgMusic.muted = false;
+      bgMusic.play().catch(() => {});
+      musicStarted = true;
+    }
+  }
+
+  // Unmute on any click, touch, or key press
+  ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, startMusic, { once: true });
+  });
+
+  // ===== CANVAS PARTICLES =====
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  let particles = [];
+  let explosions = [];
+  const particleCount = 90;
+  const connectionDistance = 135;
+
+  const mouse = {
+    x: null,
+    y: null,
+    radius: 150
+  };
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  // Explosion on click
+  function createExplosion(x, y) {
+    const count = 40;
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+      const speed = Math.random() * 8 + 5;
+      explosions.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: Math.random() * 3.2 + 1.5,
+        life: 1,
+        decay: Math.random() * 0.018 + 0.012,
+        color: Math.random() > 0.35 ? 'gold' : 'orange'
+      });
+    }
+  }
+
+  window.addEventListener('click', e => createExplosion(e.clientX, e.clientY));
+  window.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    createExplosion(t.clientX, t.clientY);
+  });
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = height + Math.random() * 100;
+      this.vx = (Math.random() - 0.5) * 0.8;
+      this.vy = -(Math.random() * 1.5 + 0.5);
+      this.size = Math.random() * 2.6 + 1;
+      this.opacity = Math.random() * 0.5 + 0.35;
+      this.glowSize = this.size * 4.2;
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = Math.random() * 0.02 + 0.01;
+    }
+
+    update() {
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          const force = (mouse.radius - distance) / mouse.radius;
+          const angle = Math.atan2(dy, dx);
+          this.vx += Math.cos(angle) * force * 0.7;
+          this.vy += Math.sin(angle) * force * 0.7;
+        }
+      }
+
+      this.wobble += this.wobbleSpeed;
+      this.vx += Math.sin(this.wobble) * 0.015;
+      this.vx *= 0.99;
+      this.vy -= 0.003;
+      if (this.vy < -2.5) this.vy = -2.5;
+
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < -10) this.x = width + 10;
+      if (this.x > width + 10) this.x = -10;
+
+      if (this.y < -50) {
+        this.y = height + Math.random() * 50;
+        this.x = Math.random() * width;
+        this.vy = -(Math.random() * 1.5 + 0.5);
+        this.vx = (Math.random() - 0.5) * 0.8;
+      }
+    }
+
+    draw() {
+      const gradient = ctx.createRadialGradient(
+        this.x, this.y, 0,
+        this.x, this.y, this.glowSize
+      );
+      gradient.addColorStop(0, `rgba(255, 200, 80, ${this.opacity * 0.65})`);
+      gradient.addColorStop(0.4, `rgba(255, 160, 40, ${this.opacity * 0.28})`);
+      gradient.addColorStop(1, 'rgba(255, 120, 0, 0)');
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.glowSize, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 230, 150, ${this.opacity})`;
+      ctx.shadowBlur = 16;
+      ctx.shadowColor = 'rgba(255, 180, 50, 0.95)';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  function init() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      const p = new Particle();
+      p.y = Math.random() * (height + 100);
+      particles.push(p);
+    }
+  }
+
+  function updateExplosions() {
+    for (let i = explosions.length - 1; i >= 0; i--) {
+      const p = explosions[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.97;
+      p.vy *= 0.97;
+      p.life -= p.decay;
+
+      if (p.life <= 0) {
+        explosions.splice(i, 1);
+        continue;
+      }
+
+      const alpha = p.life;
+      const glow = p.size * 5.5;
+
+      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
+      if (p.color === 'gold') {
+        gradient.addColorStop(0, `rgba(255, 235, 130, ${alpha})`);
+        gradient.addColorStop(0.4, `rgba(255, 185, 50, ${alpha * 0.5})`);
+        gradient.addColorStop(1, 'rgba(255, 100, 0, 0)');
+      } else {
+        gradient.addColorStop(0, `rgba(255, 165, 60, ${alpha})`);
+        gradient.addColorStop(0.4, `rgba(255, 90, 0, ${alpha * 0.5})`);
+        gradient.addColorStop(1, 'rgba(255, 40, 0, 0)');
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, glow, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 210, ${alpha})`;
+      ctx.shadowBlur = 22;
+      ctx.shadowColor = p.color === 'gold' ? 'rgba(255, 200, 60, 1)' : 'rgba(255, 110, 0, 1)';
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  function connectParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < connectionDistance) {
+          const opacity = 1 - distance / connectionDistance;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 180, 50, ${opacity * 0.2})`;
+          ctx.lineWidth = 0.9;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = particles[i].x - mouse.x;
+        const dy = particles[i].y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius + 50) {
+          const opacity = 1 - distance / (mouse.radius + 50);
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 205, 100, ${opacity * 0.38})`;
+          ctx.lineWidth = 1.15;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    updateExplosions();
+    connectParticles();
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    init();
+  });
+
+  resize();
+  init();
+  animate();
+</script>
+
+</body>
+</html>

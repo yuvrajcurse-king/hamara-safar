@@ -1,0 +1,126 @@
+# Netlify configuration for Hamara Safar (static site)
+# Optimized for free tier: long cache, compression, clean publishes
+
+[build]
+  # No build step — pure static HTML/CSS/JS
+  publish = "."
+  # Optional: if you later add a build script, set:
+  # command = "npm run build"
+
+[[headers]]
+  for = "/assts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Accept-Ranges = "bytes"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# ─── Pretty redirects (optional aliases) ───
+[[redirects]]
+  from = "/credits"
+  to = "/credit.html"
+  status = 301
+
+[[redirects]]
+  from = "/credits.html"
+  to = "/credit.html"
+  status = 301
+
+[[redirects]]
+  from = "/characters"
+  to = "/chre.html"
+  status = 301
+
+[[redirects]]
+  from = "/characters.html"
+  to = "/chre.html"
+  status = 301
+
+[[redirects]]
+  from = "/creator"
+  to = "/abot.html"
+  status = 301
+
+[[redirects]]
+  from = "/creator.html"
+  to = "/abot.html"
+  status = 301
+
+[[redirects]]
+  from = "/writer"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/writer.html"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/story"
+  to = "/read.html"
+  status = 301
+
+[[redirects]]
+  from = "/home"
+  to = "/home.html"
+  status = 301
+
+
+[[redirects]]
+  from = "/publish"
+  to = "/publish.html"
+  status = 301
+
+[[redirects]]
+  from = "/submit"
+  to = "/publish.html"
+  status = 301
+
+[[redirects]]
+  from = "/community"
+  to = "/publish.html"
+  status = 301
+
+# SPA-style fallback not needed for multi-page static site
+# Catch-all 404 stays as Netlify default
+
+# ─── Processing: Netlify already gzip/brotli compresses text ───
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = false
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = false
+  # Keep .html extensions so existing links keep working

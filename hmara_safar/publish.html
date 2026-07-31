@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hamara Safar — Publish your story, poem, art or comic. Share your work with the community.">
+<title>Publish Your Work · Hamara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: #0a0000;
+  color: #f5e6d3;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(180, 40, 0, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(120, 20, 0, 0.15) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(40, 5, 0, 0.4) 0%, #0a0000 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Nav */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(10,0,0,0.95) 0%, transparent 100%);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #ffd700;
+  text-decoration: none;
+  text-shadow: 0 0 12px rgba(255, 180, 0, 0.5);
+}
+.nav-back {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(245, 230, 211, 0.5);
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 7px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.nav-back:hover {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.55);
+  background: rgba(80, 10, 0, 0.35);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  z-index: 10;
+  padding: 110px 24px 40px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.hero-kicker {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.65);
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 20px rgba(255, 160, 0, 0.6),
+    0 0 50px rgba(255, 80, 0, 0.3);
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(22px, 4vw, 32px);
+  color: #ffecb3;
+  margin-bottom: 18px;
+}
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(245, 230, 211, 0.7);
+  max-width: 520px;
+  margin: 0 auto;
+}
+.hero-desc strong {
+  color: #ffd700;
+  font-weight: 500;
+}
+
+/* Main layout */
+.main {
+  position: relative;
+  z-index: 10;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* Card */
+.card {
+  background: rgba(30, 5, 0, 0.55);
+  border: 1px solid rgba(255, 215, 0, 0.18);
+  border-radius: 18px;
+  padding: 28px 24px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 40px rgba(255, 80, 0, 0.08),
+    inset 0 1px 0 rgba(255, 215, 0, 0.06);
+  margin-bottom: 28px;
+}
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd700;
+  margin-bottom: 6px;
+}
+.card-hint {
+  font-size: 13px;
+  color: rgba(245, 230, 211, 0.5);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.75);
+  margin-bottom: 7px;
+}
+.form-group label .req {
+  color: #ff6b4a;
+  margin-left: 2px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  color: #f5e6d3;
+  background: rgba(10, 0, 0, 0.55);
+  border: 1px solid rgba(255, 215, 0, 0.22);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  resize: vertical;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(245, 230, 211, 0.3);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: rgba(255, 215, 0, 0.55);
+  box-shadow: 0 0 0 3px rgba(255, 160, 0, 0.12);
+}
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffd700' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.form-group select option {
+  background: #1a0800;
+  color: #f5e6d3;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Submit */
+.submit-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #0a0000;
+  background: linear-gradient(135deg, #ffd700 0%, #ff9800 100%);
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 160, 0, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(255, 160, 0, 0.5);
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success / error states */
+.form-status {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+.form-status.ok {
+  display: block;
+  background: rgba(40, 120, 40, 0.25);
+  border: 1px solid rgba(100, 200, 100, 0.35);
+  color: #b8f0b8;
+}
+.form-status.err {
+  display: block;
+  background: rgba(120, 30, 20, 0.3);
+  border: 1px solid rgba(255, 100, 80, 0.35);
+  color: #ffb0a0;
+}
+
+/* Guidelines */
+.guide-list {
+  list-style: none;
+  padding: 0;
+}
+.guide-list li {
+  position: relative;
+  padding: 10px 0 10px 28px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(245, 230, 211, 0.75);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+}
+.guide-list li:last-child { border-bottom: none; }
+.guide-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: #ffd700;
+  font-size: 12px;
+  top: 12px;
+}
+
+/* Published wall note */
+.wall-note {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: rgba(245, 230, 211, 0.55);
+  line-height: 1.6;
+}
+.wall-note a {
+  color: #ffd700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+.wall-note a:hover { border-bottom-color: #ffd700; }
+
+/* Footer */
+.footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255, 215, 0, 0.35);
+}
+
+/* Honeypot hide */
+.hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="home.html" class="nav-logo">HAMARA SAFAR</a>
+  <a href="home.html" class="nav-back">← Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-kicker">Community · Open Stage</div>
+  <h1 class="hero-title">PUBLISH YOUR WORK</h1>
+  <div class="hero-sub">Apni kahaani yahan likho</div>
+  <p class="hero-desc">
+    Koi bhi student, writer ya artist yahan apna <strong>story, poem, shayari, comic idea</strong>
+    ya short piece bhej sakta hai. Approved works Hamara Safar community wall par dikhaye jaayenge.
+  </p>
+</section>
+
+<main class="main">
+
+  <!-- Guidelines -->
+  <div class="card">
+    <div class="card-title">Guidelines</div>
+    <p class="card-hint">Simple rules so everyone’s work stays respectful and original.</p>
+    <ul class="guide-list">
+      <li>Original work only — apna likha / banaya hua content bhejo.</li>
+      <li>Language: Hindi, English, or Hinglish — sab welcome.</li>
+      <li>No hate, bullying, or adult content. School-friendly vibes.</li>
+      <li>Max ~3000 words for stories; poems/shayari can be shorter.</li>
+      <li>Optional: Instagram / Google Drive link if you have art or long text.</li>
+      <li>Review usually takes a few days. You’ll get a note if contact email is given.</li>
+    </ul>
+  </div>
+
+  <!-- Submit form — Netlify Forms -->
+  <div class="card" id="form-card">
+    <div class="card-title">Submit your piece</div>
+    <p class="card-hint">Form Netlify par save hota hai. Free tier: ~100 submissions / month.</p>
+
+    <form
+      name="publish-work"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      id="publish-form"
+      netlify
+    >
+      <input type="hidden" name="form-name" value="publish-work" />
+
+      <!-- Honeypot anti-spam -->
+      <p class="hp">
+        <label>Don’t fill this: <input name="bot-field" /></label>
+      </p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="author">Your name <span class="req">*</span></label>
+          <input type="text" id="author" name="author" required maxlength="80"
+            placeholder="e.g. Aarav / Priya" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" name="email" maxlength="120"
+            placeholder="for reply only" autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="work_type">Type of work <span class="req">*</span></label>
+          <select id="work_type" name="work_type" required>
+            <option value="" disabled selected>Select…</option>
+            <option value="story">Story / Short story</option>
+            <option value="poem">Poem / Shayari</option>
+            <option value="comic">Comic / Manga idea</option>
+            <option value="letter">Letter / Open note</option>
+            <option value="art">Art description / link</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="title">Title <span class="req">*</span></label>
+          <input type="text" id="title" name="title" required maxlength="120"
+            placeholder="Your piece title" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="language">Language</label>
+        <select id="language" name="language">
+          <option value="hinglish" selected>Hinglish</option>
+          <option value="hindi">Hindi</option>
+          <option value="english">English</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="body">Your work <span class="req">*</span></label>
+        <textarea id="body" name="body" required rows="10" maxlength="12000"
+          placeholder="Yahan apni kahani, shayari, ya description likho…"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="link">Link (optional)</label>
+        <input type="url" id="link" name="link" maxlength="300"
+          placeholder="7033809508" />
+      </div>
+
+      <div class="form-group">
+        <label for="note">Message for moderators (optional)</label>
+        <input type="text" id="note" name="note" maxlength="200"
+          placeholder="Anything we should know?" />
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Send for review</button>
+      <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <!-- How publishing works -->
+  <div class="card">
+    <div class="card-title">How it works</div>
+    <ul class="guide-list">
+      <li><strong style="color:#ffd700">1. Submit</strong> — form is saved securely on Netlify.</li>
+      <li><strong style="color:#ffd700">2. Review</strong> — team (Yuvraj / Jay) checks originality & guidelines.</li>
+      <li><strong style="color:#ffd700">3. Publish</strong> — approved pieces appear on the Community Wall (coming soon on this page) or Instagram.</li>
+      <li><strong style="color:#ffd700">4. Credit</strong> — your name stays with the work. You keep full rights.</li>
+    </ul>
+    <p class="wall-note" style="margin-top:16px; padding:0;">
+      Follow updates on
+      <a href="https://www.instagram.com/jaystory_2605?igsh=ZWd1MHpkdW16ZW9j" target="_blank" rel="noopener">@jaystory_2605</a>
+    </p>
+  </div>
+
+</main>
+
+<footer class="footer">HAMARA SAFAR · Open stage for every voice</footer>
+
+<script>
+(function () {
+  const form = document.getElementById('publish-form');
+  const status = document.getElementById('form-status');
+  const btn = document.getElementById('submit-btn');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (res.ok) {
+        status.className = 'form-status ok';
+        status.innerHTML = '✓ Shukriya! Aapka kaam review ke liye aa gaya hai.<br>Approved hone par community wall / Instagram par share hoga.';
+        form.reset();
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (err) {
+      // Fallback: native POST still works if JS fetch fails on some hosts
+      status.className = 'form-status err';
+      status.innerHTML = 'Submit issue hua. Page reload karke dubara try karein, ya seedha form submit karein (JS off).';
+      // Optional: allow native submit as last resort
+      // form.submit();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send for review';
+    }
+  });
+})();
+</script>
+</body>
+</html>

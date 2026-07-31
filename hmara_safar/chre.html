@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Characters | Hamara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  color: #e8e0d4;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ===== BACKGROUND ===== */
+#bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(139,69,19,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 30%, rgba(70,130,180,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(128,0,128,0.04) 0%, transparent 40%),
+    #0c0c0e;
+
+}
+
+.home-btn {
+      position: fixed; top: 18px; left: 18px;
+      z-index: 100;
+      padding: 10px 20px;
+      background: rgba(30,25,20,0.85);
+      border: 1.5px solid rgba(255,200,100,0.35);
+      color: rgba(255,220,160,0.9);
+      font-family: 'Cinzel', serif; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+      border-color: #ffd700; color: #ffd700;
+      box-shadow: 0 0 20px rgba(255,180,80,0.25);
+}
+
+/* Animated grain */
+#bg::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: grain 0.5s steps(10) infinite;
+}
+@keyframes grain { 0%,100% { transform: translate(0,0); } 10% { transform: translate(-2%,-2%); } 20% { transform: translate(2%,2%); } 30% { transform: translate(-1%,1%); } 40% { transform: translate(1%,-1%); } 50% { transform: translate(-2%,2%); } 60% { transform: translate(2%,-2%); } 70% { transform: translate(-1%,-1%); } 80% { transform: translate(1%,1%); } 90% { transform: translate(-2%,-2%); } }
+
+/* ===== NAV ===== */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, rgba(12,12,14,0.95) 0%, transparent 100%);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 4px;
+  color: #d4a574;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex; gap: 6px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(200,200,210,0.4);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer; background: transparent;
+}
+.nav-link:hover, .nav-link.active {
+  color: #d4a574;
+  border-color: rgba(212,165,116,0.3);
+  background: rgba(212,165,116,0.05);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; z-index: 10;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+}
+.hero-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 6px;
+  color: rgba(212,165,116,0.5);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 18vw, 180px);
+  color: #e8e0d4;
+  line-height: 0.9;
+  letter-spacing: 8px;
+  text-shadow: 0 0 80px rgba(212,165,116,0.1);
+}
+.hero h1 span {
+  display: block;
+  background: linear-gradient(180deg, #e8e0d4 0%, #8b7355 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(20px, 3vw, 32px);
+  color: rgba(212,165,116,0.5);
+  margin-top: 20px;
+  letter-spacing: 1px;
+}
+.hero .scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(180deg, rgba(212,165,116,0.4), transparent);
+  margin-top: 50px;
+  animation: lineGrow 2s ease-in-out infinite alternate;
+}
+@keyframes lineGrow { 0% { transform: scaleY(0.3); opacity: 0.3; } 100% { transform: scaleY(1); opacity: 0.8; } }
+
+/* ===== SECTIONS ===== */
+.section {
+  position: relative; z-index: 10;
+  padding: 100px 24px;
+  max-width: 1100px; margin: 0 auto;
+}
+.section-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 5px;
+  color: rgba(212,165,116,0.4);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 8vw, 80px);
+  color: #e8e0d4;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.section-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  color: rgba(200,200,210,0.4);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* ===== PROTAGONIST CARDS ===== */
+.protag-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 60px 0;
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.protag-card.reverse { direction: rtl; }
+.protag-card.reverse > * { direction: ltr; }
+
+.protag-visual {
+  position: relative;
+  min-height: 500px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.protag-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.15;
+}
+.protag-visual.jay::before { background: linear-gradient(135deg, #1B263B, #0D182A); }
+.protag-visual.shree::before { background: linear-gradient(135deg, #2d1b2e, #1a0f1a); }
+
+.protag-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(200px, 30vw, 400px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212,165,116,0.2);
+  position: relative; z-index: 2;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+.protag-card:hover .protag-letter {
+  -webkit-text-stroke: 1px rgba(212,165,116,0.4);
+  text-shadow: 0 0 60px rgba(212,165,116,0.1);
+}
+.protag-visual .accent-shape {
+  position: absolute;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(212,165,116,0.1);
+  border-radius: 50%;
+  animation: shapeFloat 8s ease-in-out infinite alternate;
+}
+.protag-visual .accent-shape:nth-child(2) { width: 300px; height: 300px; animation-delay: -3s; opacity: 0.5; }
+.protag-visual .accent-shape:nth-child(3) { width: 150px; height: 150px; animation-delay: -6s; opacity: 0.3; }
+@keyframes shapeFloat { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(20px,-20px) rotate(10deg); } }
+
+.protag-info {
+  padding: 50px 40px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: rgba(255,255,255,0.01);
+  position: relative;
+}
+.protag-info::before {
+  content: '';
+  position: absolute; top: 40px; left: 40px; right: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212,165,116,0.2), transparent);
+}
+.protag-info .role {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 4px;
+  color: rgba(212,165,116,0.6);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.protag-info h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 80px);
+  color: #e8e0d4;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.protag-info .jp-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px; font-weight: 500; letter-spacing: 3px;
+  color: rgba(200,200,210,0.3);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.protag-info .quote {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  color: rgba(212,165,116,0.6);
+  line-height: 1.5;
+  margin-bottom: 32px;
+  padding-left: 20px;
+  border-left: 2px solid rgba(212,165,116,0.15);
+}
+
+.protag-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.protag-stat {
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.protag-stat .stat-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  color: rgba(200,200,210,0.3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.protag-stat .stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: rgba(232,224,212,0.8);
+}
+
+.protag-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.protag-tag {
+  padding: 6px 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  color: rgba(200,200,210,0.5);
+  transition: all 0.3s ease;
+}
+.protag-tag:hover {
+  border-color: rgba(212,165,116,0.3);
+  color: #d4a574;
+  background: rgba(212,165,116,0.05);
+  transform: translateY(-2px);
+}
+
+/* ===== SUPPORTING CAST ===== */
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 60px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.cast-item {
+  padding: 40px 32px;
+  background: rgba(255,255,255,0.01);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+.cast-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 3px; height: 0;
+  background: linear-gradient(180deg, #d4a574, transparent);
+  transition: height 0.5s ease;
+}
+.cast-item:hover::before { height: 100%; }
+.cast-item:hover {
+  background: rgba(255,255,255,0.02);
+}
+.cast-item .cast-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 15vw, 140px);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212,165,116,0.08);
+  position: absolute; top: 10px; right: 20px;
+  user-select: none; pointer-events: none;
+  transition: all 0.4s ease;
+}
+.cast-item:hover .cast-letter {
+  -webkit-text-stroke: 1px rgba(212,165,116,0.2);
+}
+.cast-item .cast-role {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 4px;
+  color: rgba(212,165,116,0.5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.cast-item h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  color: #e8e0d4;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative; z-index: 2;
+}
+.cast-item .cast-quote {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: rgba(212,165,116,0.4);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  position: relative; z-index: 2;
+}
+.cast-meta {
+  display: flex; gap: 24px;
+  flex-wrap: wrap;
+  position: relative; z-index: 2;
+}
+.cast-meta-item {
+  display: flex; flex-direction: column;
+  gap: 2px;
+}
+.cast-meta-item .meta-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 9px; font-weight: 600; letter-spacing: 2px;
+  color: rgba(200,200,210,0.25);
+  text-transform: uppercase;
+}
+.cast-meta-item .meta-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: rgba(232,224,212,0.6);
+}
+
+/* ===== FRIENDSHIP MAP ===== */
+.friendship-section {
+  position: relative; z-index: 10;
+  padding: 100px 24px;
+  max-width: 900px; margin: 0 auto;
+}
+.friendship-map {
+  position: relative;
+  min-height: 500px;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-node {
+  position: absolute;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.map-node:hover { transform: scale(1.08); }
+.map-node .node-ring {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,165,116,0.15);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+.map-node:hover .node-ring {
+  border-color: rgba(212,165,116,0.4);
+  box-shadow: 0 0 30px rgba(212,165,116,0.1);
+}
+.map-node .node-ring::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,165,116,0.08);
+}
+.map-node .node-ring .node-initial {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: #d4a574;
+  letter-spacing: 1px;
+}
+.map-node .node-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 3px;
+  color: rgba(200,200,210,0.5);
+  text-transform: uppercase;
+  background: rgba(12,12,14,0.8);
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+.map-node .node-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  color: rgba(200,200,210,0.25);
+  text-align: center;
+}
+
+/* Position nodes in hexagon */
+.map-node.jay { top: 5%; left: 50%; transform: translateX(-50%); }
+.map-node.piyush { top: 28%; left: 10%; }
+.map-node.yuvraj { top: 28%; right: 10%; }
+.map-node.shree { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.map-node.vishu { bottom: 28%; left: 12%; }
+.map-node.soniya { bottom: 28%; right: 12%; }
+
+/* SVG connections */
+.map-svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.map-svg line {
+  stroke: rgba(212,165,116,0.1);
+  stroke-width: 1;
+  stroke-dasharray: 6 6;
+  animation: dashFlow 3s linear infinite;
+}
+.map-svg .line-strong {
+  stroke: rgba(212,165,116,0.2);
+  stroke-width: 1.5;
+}
+@keyframes dashFlow { to { stroke-dashoffset: -24; } }
+
+/* ===== COMPARISON ===== */
+.compare-section {
+  position: relative; z-index: 10;
+  padding: 100px 24px;
+  max-width: 1000px; margin: 0 auto;
+}
+.compare-table-wrap {
+  overflow-x: auto;
+  margin-top: 50px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.compare-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 700px;
+}
+.compare-table-wrap th {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  color: rgba(212,165,116,0.5);
+  text-transform: uppercase;
+  padding: 18px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.01);
+}
+.compare-table-wrap td {
+  padding: 16px;
+  color: rgba(200,200,210,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.3s ease;
+}
+.compare-table-wrap tr:hover td {
+  background: rgba(255,255,255,0.015);
+}
+.compare-table-wrap .t-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: #e8e0d4;
+  letter-spacing: 2px;
+}
+.compare-table-wrap .t-quote {
+  font-family: 'Dancing Script', cursive;
+  font-size: 15px;
+  color: rgba(212,165,116,0.5);
+}
+.compare-table-wrap .t-color {
+  display: inline-block; width: 10px; height: 10px;
+  border-radius: 50%; margin-right: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 80px 24px 60px;
+  position: relative; z-index: 10;
+}
+.footer .f-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,165,116,0.3), transparent);
+  margin: 0 auto 30px;
+}
+.footer h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 7vw, 64px);
+  color: #e8e0d4;
+  letter-spacing: 6px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.footer p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 500; letter-spacing: 5px;
+  color: rgba(200,200,210,0.3);
+  text-transform: uppercase;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .protag-card { grid-template-columns: 1fr; }
+  .protag-card.reverse { direction: ltr; }
+  .protag-visual { min-height: 300px; }
+  .protag-info { padding: 32px 24px; }
+  .cast-grid { grid-template-columns: 1fr; }
+  .cast-item { padding: 32px 24px; }
+  .protag-stats { grid-template-columns: 1fr; gap: 12px; }
+  .friendship-map { min-height: 600px; }
+  .map-node .node-ring { width: 64px; height: 64px; }
+  .map-node .node-ring .node-initial { font-size: 24px; }
+  .map-node.piyush { top: 22%; left: 5%; }
+  .map-node.yuvraj { top: 22%; right: 5%; }
+  .map-node.vishu { bottom: 22%; left: 5%; }
+  .map-node.soniya { bottom: 22%; right: 5%; }
+  .nav-bar { padding: 16px 16px; }
+  .nav-logo { font-size: 18px; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div id="bg"></div>
+
+<!-- Nav -->
+<nav class="nav-bar">
+  <a href="#" class="nav-logo">HAMARA SAFAR</a>
+  <div class="nav-links">
+    <a href="#jay" class="nav-link">Jay</a>
+    <a href="#shree" class="nav-link">Shree</a>
+    <a href="#cast" class="nav-link">Cast</a>
+    <a href="#bonds" class="nav-link">Bonds</a>
+    <a href="#compare" class="nav-link">Data</a>
+  </div>
+</nav>
+
+<a href="home.html" class="home-btn">🏠 Home</a>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-label reveal">Written with love</div>
+  <h1 class="reveal reveal-delay-1">
+    <span>THE</span>
+    <span>CHARACTERS</span>
+  </h1>
+  <p class="subtitle reveal reveal-delay-2">Six souls. One story. Infinite memories.</p>
+  <div class="scroll-line reveal reveal-delay-3"></div>
+</section>
+
+<!-- Jay -->
+<section class="section" id="jay">
+  <div class="section-tag reveal">The Protagonist</div>
+  <div class="protag-card reveal">
+    <div class="protag-visual jay">
+      <div class="accent-shape"></div>
+      <div class="accent-shape"></div>
+      <div class="accent-shape"></div>
+      <div class="protag-letter">J</div>
+    </div>
+    <div class="protag-info">
+      <div class="role">The Storyteller</div>
+      <h2>JAY</h2>
+      <div class="jp-name">Mrityunjay</div>
+      <p class="quote">"Kuch rishte waqt se bade hote hain, aur kuch waqt hi rishta banata hai."</p>
+      <div class="protag-stats">
+        <div class="protag-stat">
+          <div class="stat-label">Age</div>
+          <div class="stat-value">13-14 Years</div>
+        </div>
+        <div class="protag-stat">
+          <div class="stat-label">Class</div>
+          <div class="stat-value">8th Standard</div>
+        </div>
+        <div class="protag-stat">
+          <div class="stat-label">Location</div>
+          <div class="stat-value">Bihar, India</div>
+        </div>
+      </div>
+      <div class="protag-tags">
+        <span class="protag-tag">Brave</span>
+        <span class="protag-tag">Dreamer</span>
+        <span class="protag-tag">Loyal</span>
+        <span class="protag-tag">Sensitive</span>
+        <span class="protag-tag">Writer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shree -->
+<section class="section" id="shree">
+  <div class="section-tag reveal">The Heart</div>
+  <div class="protag-card reverse reveal">
+    <div class="protag-visual shree">
+      <div class="accent-shape"></div>
+      <div class="accent-shape"></div>
+      <div class="accent-shape"></div>
+      <div class="protag-letter">S</div>
+    </div>
+    <div class="protag-info">
+      <div class="role">The Muse</div>
+      <h2>SHREE</h2>
+      <div class="jp-name">The Heart of the Story</div>
+      <p class="quote">"Ek muskaan jo umar bhar yaad rahe, wahi toh asli khoobsurati hai."</p>
+      <div class="protag-stats">
+        <div class="protag-stat">
+          <div class="stat-label">Age</div>
+          <div class="stat-value">13-14 Years</div>
+        </div>
+        <div class="protag-stat">
+          <div class="stat-label">Class</div>
+          <div class="stat-value">10th Standard</div>
+        </div>
+        <div class="protag-stat">
+          <div class="stat-label">Location</div>
+          <div class="stat-value">Bihar, India</div>
+        </div>
+      </div>
+      <div class="protag-tags">
+        <span class="protag-tag">Kind</span>
+        <span class="protag-tag">Graceful</span>
+        <span class="protag-tag">Artistic</span>
+        <span class="protag-tag">Gentle</span>
+        <span class="protag-tag">Strong</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cast -->
+<section class="section" id="cast">
+  <div class="section-tag reveal">The Ensemble</div>
+  <h2 class="section-title reveal">SUPPORTING CAST</h2>
+  <p class="section-desc reveal">Friends who became family. Each one a universe of their own.</p>
+
+  <div class="cast-grid">
+    <div class="cast-item reveal reveal-delay-1">
+      <div class="cast-letter">P</div>
+      <div class="cast-role">Jay ka Best Friend</div>
+      <h3>PIYUSH</h3>
+      <p class="cast-quote">"Dosti ka matlab saath hona, hamesha."</p>
+      <div class="cast-meta">
+        <div class="cast-meta-item">
+          <span class="meta-label">Birthday</span>
+          <span class="meta-value">12 July</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Blood</span>
+          <span class="meta-value">B+</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Color</span>
+          <span class="meta-value">Royal Blue</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Sub</span>
+          <span class="meta-value">Biology</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cast-item reveal reveal-delay-2">
+      <div class="cast-letter">Y</div>
+      <div class="cast-role">Jay ka Close Friend</div>
+      <h3>YUVRAJ</h3>
+      <p class="cast-quote">"Sach samajh kar kadam badhao."</p>
+      <div class="cast-meta">
+        <div class="cast-meta-item">
+          <span class="meta-label">Birthday</span>
+          <span class="meta-value">24th Fab</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Blood</span>
+          <span class="meta-value">AB-</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Color</span>
+          <span class="meta-value">Black</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Sub</span>
+          <span class="meta-value">Computer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cast-item reveal reveal-delay-3">
+      <div class="cast-letter">V</div>
+      <div class="cast-role">Shree ki Best Friend</div>
+      <h3>VISHU</h3>
+      <p class="cast-quote">"Haar sabse badi jeet hoti hai."</p>
+      <div class="cast-meta">
+        <div class="cast-meta-item">
+          <span class="meta-label">Birthday</span>
+          <span class="meta-value">21 May</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Blood</span>
+          <span class="meta-value">A+</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Color</span>
+          <span class="meta-value">Sky Blue</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Sub</span>
+          <span class="meta-value">Physics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cast-item reveal reveal-delay-4">
+      <div class="cast-letter">S</div>
+      <div class="cast-role">Shree ki Close Friend</div>
+      <h3>SONIYA</h3>
+      <p class="cast-quote">"Sukoon shor mein nahi, khamoshi mein milta hai."</p>
+      <div class="cast-meta">
+        <div class="cast-meta-item">
+          <span class="meta-label">Birthday</span>
+          <span class="meta-value">17 Sep</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Blood</span>
+          <span class="meta-value">B+</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Color</span>
+          <span class="meta-value">Lavender</span>
+        </div>
+        <div class="cast-meta-item">
+          <span class="meta-label">Sub</span>
+          <span class="meta-value">Maths</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Friendship Bonds -->
+<section class="friendship-section" id="bonds">
+  <div class="section-tag reveal" style="text-align:center;">The Connections</div>
+  <h2 class="section-title reveal" style="text-align:center;">FRIENDSHIP WEB</h2>
+  <p class="section-desc reveal" style="text-align:center; margin:0 auto 50px;">Every thread tells a story.</p>
+
+  <div class="friendship-map reveal">
+    <svg class="map-svg" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid meet">
+      <!-- Jay connections -->
+      <line class="line-strong" x1="450" y1="50" x2="150" y2="180" />
+      <line x1="450" y1="50" x2="750" y2="180" />
+      <line class="line-strong" x1="450" y1="50" x2="450" y2="450" />
+      <!-- Shree connections -->
+      <line class="line-strong" x1="450" y1="450" x2="200" y2="320" />
+      <line x1="450" y1="450" x2="700" y2="320" />
+      <!-- Cross connections -->
+      <line x1="150" y1="180" x2="200" y2="320" stroke-dasharray="3 6" opacity="0.5" />
+      <line x1="750" y1="180" x2="700" y2="320" stroke-dasharray="3 6" opacity="0.5" />
+      <line x1="150" y1="180" x2="750" y2="180" stroke-dasharray="2 8" opacity="0.3" />
+      <line x1="200" y1="320" x2="700" y2="320" stroke-dasharray="2 8" opacity="0.3" />
+    </svg>
+
+    <div class="map-node jay">
+      <div class="node-ring"><span class="node-initial">J</span></div>
+      <span class="node-label">Jay</span>
+      <span class="node-sub">The Storyteller</span>
+    </div>
+    <div class="map-node piyush">
+      <div class="node-ring"><span class="node-initial">P</span></div>
+      <span class="node-label">Piyush</span>
+      <span class="node-sub">Best Friend</span>
+    </div>
+    <div class="map-node yuvraj">
+      <div class="node-ring"><span class="node-initial">Y</span></div>
+      <span class="node-label">Yuvraj</span>
+      <span class="node-sub">Close Friend</span>
+    </div>
+    <div class="map-node shree">
+      <div class="node-ring"><span class="node-initial">S</span></div>
+      <span class="node-label">Shree</span>
+      <span class="node-sub">The Heart</span>
+    </div>
+    <div class="map-node vishu">
+      <div class="node-ring"><span class="node-initial">V</span></div>
+      <span class="node-label">Vishu</span>
+      <span class="node-sub">Best Friend</span>
+    </div>
+    <div class="map-node soniya">
+      <div class="node-ring"><span class="node-initial">S</span></div>
+      <span class="node-label">Soniya</span>
+      <span class="node-sub">Close Friend</span>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section class="compare-section" id="compare">
+  <div class="section-tag reveal">The Details</div>
+  <h2 class="section-title reveal">DATA SHEET</h2>
+  <p class="section-desc reveal">Every detail that makes them who they are.</p>
+
+  <div class="compare-table-wrap reveal">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Birthday</th>
+          <th>Blood</th>
+          <th>Favorites</th>
+          <th>Season</th>
+          <th>Quote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="t-name">Piyush</td>
+          <td>Jay ka Best Friend</td>
+          <td>12 July</td>
+          <td>B+</td>
+          <td><span class="t-color" style="background:#4169E1;"></span>Royal Blue / Biology</td>
+          <td>Winter</td>
+          <td class="t-quote">"Dosti ka matlab saath hona, hamesha."</td>
+        </tr>
+        <tr>
+          <td class="t-name">Yuvraj</td>
+          <td>Jay ka Close Friend</td>
+          <td>3 March</td>
+          <td>AB-</td>
+          <td><span class="t-color" style="background:#000000;"></span>Black / Computer</td>
+          <td>Rainy</td>
+          <td class="t-quote">"Sach samajh kar kadam badhao."</td>
+        </tr>
+        <tr>
+          <td class="t-name">Vishu</td>
+          <td>Shree ki Best Friend</td>
+          <td>21 May</td>
+          <td>A+</td>
+          <td><span class="t-color" style="background:#87CEEB;"></span>Sky Blue / Physices</td>
+          <td>Spring</td>
+          <td class="t-quote">"Haar sabse badi jeet hoti hai."</td>
+        </tr>
+        <tr>
+          <td class="t-name">Soniya</td>
+          <td>Shree ki Close Friend</td>
+          <td>17 Sep</td>
+          <td>B+</td>
+          <td><span class="t-color" style="background:#C8A2C8;"></span>Lavender / Maths</td>
+          <td>Autumn</td>
+          <td class="t-quote">"Sukoon shor mein nahi..."</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/bgm.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="f-line"></div>
+  <h3 class="reveal">HAMARA SAFAR</h3>
+  <p class="reveal reveal-delay-1">Ek Adhoori Dastaan — Arc 1</p>
+</footer>
+
+<script>
+    // ===== AUTO UNMUTE MUSIC ON FIRST INTERACTION =====
+    const bgMusic = document.getElementById('bgMusic');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted && bgMusic) {
+        bgMusic.muted = false;
+        bgMusic.play().catch(() => {});
+        musicStarted = true;
+      }
+    }
+
+    // Unmute on any click, touch, or key press
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, startMusic, { once: true });
+    });
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Active nav link
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top <= 120) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MRITYUNJAY | The Writer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;500;700;900&family=Caveat:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Syncopate:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: #050508;
+  color: #e8e0d4;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ===== BACKGROUND ===== */
+#bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: url("assts/bg.webp") center/cover no-repeat;
+}
+#bg::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(139,0,0,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(65,90,119,0.1) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(5,5,8,0.4) 0%, rgba(5,5,8,0.9) 100%);
+}
+#bg::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 2;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px
+  );
+  pointer-events: none;
+}
+
+/* ===== PARTICLES ===== */
+#particles {
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== INK DROP ANIMATION ===== */
+.ink-drop {
+  position: fixed; border-radius: 50%;
+  filter: blur(60px); z-index: 0;
+  pointer-events: none;
+  animation: inkSpread 12s ease-in-out infinite alternate;
+}
+.ink-drop:nth-child(1) { width: 300px; height: 300px; background: rgba(139,0,0,0.08); top: 10%; left: 10%; }
+.ink-drop:nth-child(2) { width: 250px; height: 250px; background: rgba(65,90,119,0.06); bottom: 20%; right: 15%; animation-delay: -4s; }
+.ink-drop:nth-child(3) { width: 200px; height: 200px; background: rgba(180,140,60,0.05); top: 50%; left: 60%; animation-delay: -8s; }
+@keyframes inkSpread {
+  0% { transform: translate(0,0) scale(1); opacity: 0.5; }
+  100% { transform: translate(30px,-20px) scale(1.3); opacity: 0.8; }
+}
+
+/* ===== SCANLINE ===== */
+.scanline {
+  position: fixed; inset: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(0,0,0,0.08) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* ===== MAIN WRAP ===== */
+#main-wrap {
+  position: relative; z-index: 10;
+  padding: 0 20px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.hero-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px; letter-spacing: 6px;
+  color: rgba(180,140,60,0.5);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  border: 1px solid rgba(180,140,60,0.15);
+  padding: 8px 24px;
+  background: rgba(180,140,60,0.03);
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge::before {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.08), transparent);
+  animation: badgeShine 4s infinite;
+}
+@keyframes badgeShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.hero h1 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(28px, 7vw, 72px);
+  font-weight: 700;
+  color: #d4a574;
+  letter-spacing: 10px;
+  line-height: 1.1;
+  text-shadow:
+    0 0 20px rgba(180,140,60,0.3),
+    0 0 60px rgba(139,0,0,0.15),
+    0 4px 8px rgba(0,0,0,0.8);
+  margin-bottom: 6px;
+}
+.hero h1 .small {
+  font-size: 0.35em;
+  letter-spacing: 8px;
+  display: block;
+  color: rgba(180,140,60,0.5);
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hero .aka {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(22px, 3.5vw, 36px);
+  color: rgba(200,180,150,0.5);
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.hero .subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: rgba(180,160,130,0.45);
+  margin-bottom: 40px;
+  min-height: 36px;
+}
+
+/* Profile frame */
+.profile-frame {
+  position: relative;
+  width: 180px; height: 180px;
+  margin: 0 auto 40px;
+}
+.profile-frame .frame-outer {
+  position: absolute; inset: -15px;
+  border: 1px solid rgba(180,140,60,0.15);
+  border-radius: 50%;
+  animation: frameSpin 20s linear infinite;
+}
+.profile-frame .frame-outer::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px dashed rgba(180,140,60,0.1);
+  border-radius: 50%;
+}
+@keyframes frameSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.profile-frame .frame-inner {
+  position: absolute; inset: -8px;
+  border: 1px solid rgba(180,140,60,0.2);
+  border-radius: 50%;
+  animation: frameSpin 15s linear infinite reverse;
+}
+.profile-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(180,140,60,0.25);
+  filter: brightness(0.85) contrast(1.1) sepia(0.2);
+}
+
+/* Pen icon */
+.pen-icon {
+  font-size: 24px;
+  margin-bottom: 20px;
+  opacity: 0.4;
+  animation: penFloat 3s ease-in-out infinite;
+}
+@keyframes penFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+/* Scroll */
+.scroll-down {
+  position: absolute; bottom: 40px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px;
+}
+.scroll-down span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 4px;
+  color: rgba(180,140,60,0.3);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, rgba(180,140,60,0.3), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 0.7; }
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  max-width: 900px; margin: 0 auto;
+  padding: 80px 0;
+}
+.sec-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 5px;
+  color: rgba(180,140,60,0.35);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sec-title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(24px, 5vw, 48px);
+  color: #d4a574;
+  letter-spacing: 4px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  color: rgba(200,190,170,0.45);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ===== STATS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 50px;
+}
+.stat-box {
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(180,140,60,0.08);
+  padding: 28px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.home-btn {
+      position: fixed; top: 18px; left: 18px;
+      z-index: 100;
+      padding: 10px 20px;
+      background: rgba(30,25,20,0.85);
+      border: 1.5px solid rgba(255,200,100,0.35);
+      color: rgba(255,220,160,0.9);
+      font-family: 'Cinzel', serif; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+      border-color: #ffd700; color: #ffd700;
+      box-shadow: 0 0 20px rgba(255,180,80,0.25);
+}
+
+.stat-box:hover {
+  border-color: rgba(180,140,60,0.2);
+  background: rgba(180,140,60,0.03);
+  transform: translateY(-4px);
+}
+.stat-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.25), transparent);
+}
+.stat-box .stat-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: #d4a574;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-box .stat-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(200,190,170,0.35);
+  text-transform: uppercase;
+}
+
+/* ===== SKILLS ===== */
+.skills-wrap {
+  margin-top: 50px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.skill-row {
+  display: flex; align-items: center; gap: 16px;
+}
+.skill-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(200,190,170,0.55);
+  width: 130px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.skill-bar-bg {
+  flex: 1; height: 4px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(139,0,0,0.4), rgba(180,140,60,0.7));
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.skill-bar-fill::after {
+  content: '';
+  position: absolute; right: 0; top: -3px;
+  width: 10px; height: 10px;
+  background: #d4a574;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(180,140,60,0.4);
+}
+.skill-percent {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: rgba(180,140,60,0.5);
+  width: 45px;
+  text-align: right;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  margin-top: 50px;
+  padding-left: 30px;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(180,140,60,0.3), rgba(139,0,0,0.1));
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 45px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -34px; top: 2px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #d4a574;
+  box-shadow: 0 0 12px rgba(180,140,60,0.3);
+}
+.timeline-item .t-chapter {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(180,140,60,0.45);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.timeline-item .t-title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: #e8e0d4;
+  margin-bottom: 8px;
+}
+.timeline-item .t-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: rgba(200,180,150,0.4);
+  line-height: 1.5;
+}
+
+/* ===== QUOTE BLOCK ===== */
+.quote-block {
+  max-width: 700px; margin: 60px auto;
+  padding: 50px 40px;
+  border: 1px solid rgba(180,140,60,0.08);
+  position: relative;
+  text-align: center;
+  background: rgba(255,255,255,0.008);
+}
+.quote-block::before,
+.quote-block::after {
+  content: '"';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 100px;
+  color: rgba(180,140,60,0.06);
+  line-height: 1;
+}
+.quote-block::before { top: 0; left: 20px; }
+.quote-block::after { bottom: -30px; right: 20px; }
+.quote-block p {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(20px, 3vw, 28px);
+  color: rgba(200,180,150,0.55);
+  line-height: 1.6;
+  position: relative; z-index: 2;
+}
+.quote-block .q-author {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(180,140,60,0.3);
+  text-transform: uppercase;
+  margin-top: 24px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center; padding: 80px 20px 60px;
+}
+.footer .f-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180,140,60,0.25), transparent);
+  margin: 0 auto 30px;
+}
+.footer h3 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(20px, 4vw, 40px);
+  color: #d4a574;
+  letter-spacing: 6px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.footer p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; letter-spacing: 4px;
+  color: rgba(200,190,170,0.25);
+  text-transform: uppercase;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .skill-name { width: 100px; font-size: 11px; }
+  .quote-block { padding: 40px 24px; }
+  .hero h1 { letter-spacing: 5px; }
+  .profile-frame { width: 150px; height: 150px; }
+  .timeline-item .t-title { font-size: 16px; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+  <a href="home.html" class="home-btn">🏠 Home</a>
+
+<div id="bg"></div>
+<canvas id="particles"></canvas>
+<div class="scanline"></div>
+
+<!-- Ink drops -->
+<div class="ink-drop"></div>
+<div class="ink-drop"></div>
+<div class="ink-drop"></div>
+
+<div id="main-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge reveal">Author_Profile // Storyteller.exe</div>
+
+    <div class="pen-icon reveal">✒</div>
+
+    <div class="profile-frame reveal reveal-delay-1">
+      <div class="frame-outer"></div>
+      <div class="frame-inner"></div>
+      <img src="assts/mritunjay.webp" loading="lazy" alt="Mrityunjay">
+    </div>
+
+    <h1 class="reveal reveal-delay-2">
+      <span class="small">The Pen Behind</span>
+      MRITYUNJAY
+    </h1>
+
+    <div class="aka reveal reveal-delay-3">Also known as "Jay"</div>
+
+    <p class="subtitle reveal reveal-delay-4" id="typeText"></p>
+
+    <div class="scroll-down reveal reveal-delay-4">
+      <span>Turn the Page</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="sec-tag reveal">Writer_Stats</div>
+    <h2 class="sec-title reveal">THE NUMBERS</h2>
+    <p class="sec-desc reveal">Every storyteller leaves a mark. Here is his.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box reveal reveal-delay-1">
+        <div class="stat-num" data-target="6">0</div>
+        <div class="stat-label">Characters Born</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-2">
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">Epic Story</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-3">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% Soul Given</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-1">
+        <div class="stat-num" data-target="8">0</div>
+        <div class="stat-label">Class Standard</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-2">
+        <div class="stat-num" data-target="13">0</div>
+        <div class="stat-label">Years Young</div>
+      </div>
+      <div class="stat-box reveal reveal-delay-3">
+        <div class="stat-num" data-target="0">0</div>
+        <div class="stat-label">Regrets</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="sec-tag reveal">Skill_Tree</div>
+    <h2 class="sec-title reveal">WRITER'S ARSENAL</h2>
+    <p class="sec-desc reveal">The weapons that forged Hamara Safar.</p>
+
+    <div class="skills-wrap">
+      <div class="skill-row reveal">
+        <span class="skill-name">Storytelling</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="99"></div></div>
+        <span class="skill-percent">99%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-1">
+        <span class="skill-name">Emotion</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div>
+        <span class="skill-percent">95%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-2">
+        <span class="skill-name">Character Depth</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="97"></div></div>
+        <span class="skill-percent">97%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-3">
+        <span class="skill-name">Dialogue</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
+        <span class="skill-percent">92%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-4">
+        <span class="skill-name">World Building</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
+        <span class="skill-percent">90%</span>
+      </div>
+      <div class="skill-row reveal reveal-delay-1">
+        <span class="skill-name">Manga Vision</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+        <span class="skill-percent">88%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="sec-tag reveal">Story_Chronicle</div>
+    <h2 class="sec-title reveal">THE JOURNEY</h2>
+    <p class="sec-desc reveal">From a thought to a universe. How Hamara Safar was born.</p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="t-chapter">Chapter 01</div>
+        <div class="t-title">The Spark</div>
+        <div class="t-desc">"Ek din dimaag mein ek khayal aaya — kyun na ek aisi kahani likhun jo sabki ho?"</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="t-chapter">Chapter 02</div>
+        <div class="t-title">Jay is Born</div>
+        <div class="t-desc">"Maine apne aap ko paper pe utara. Jay sirf ek naam nahi, meri rooh ka hissa hai."</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="t-chapter">Chapter 03</div>
+        <div class="t-title">Shree Enters</div>
+        <div class="t-desc">"Ek character aisa jo sabko yaad rahe. Shree sirf kahani mein nahi, dil mein basti hai."</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="t-chapter">Chapter 04</div>
+        <div class="t-title">The Gang Forms</div>
+        <div class="t-desc">"Piyush, Yuvraj, Vishu, Soniya — chaar dost jo Jay aur Shree ki duniya ko poora karte hain."</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="t-chapter">Chapter 05</div>
+        <div class="t-title">School</div>
+        <div class="t-desc">"Bihar ka ek school, 8th class, 13-14 saal ki umar — aur ek zindagi bhar ki yaad."</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="t-chapter">Chapter 06</div>
+        <div class="t-title">Arc 1 Complete</div>
+        <div class="t-desc">"Ek Adhoori Dastaan — pehla arc complete. Lekin kahani abhi baaki hai..."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-block reveal">
+    <p>Maine sirf shabdon se ek duniya nahi banayi...<br>maine ehsaason ko zinda kiya hai.<br>Har character meri yaad, har page mera sapna.</p>
+    <div class="q-author">— MRITYUNJAY "JAY"</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="f-line"></div>
+    <h3 class="reveal">HAMARA SAFAR</h3>
+    <p class="reveal reveal-delay-1">Written with blood, ink & soul by MRITYUNJAY</p>
+  </footer>
+
+</div>
+<audio id="bgMusic" loop autoplay muted>
+  <source src="assts/bgm.mp3" type="audio/mpeg">
+</audio>
+<script>
+// ===== PARTICLES =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+
+    // ===== AUTO UNMUTE MUSIC ON FIRST INTERACTION =====
+    const bgMusic = document.getElementById('bgMusic');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted && bgMusic) {
+        bgMusic.muted = false;
+        bgMusic.play().catch(() => {});
+        musicStarted = true;
+      }
+    }
+
+    // Unmute on any click, touch, or key press
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+      window.addEventListener(evt, startMusic, { once: true });
+    });
+
+
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 1.5 + 0.3;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3 - 0.2;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.life = Math.random() * 150 + 100;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.life--;
+    if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.reset();
+      this.y = canvas.height + 10;
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(180, 140, 60, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(180, 140, 60, ${0.04 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ===== TYPING EFFECT =====
+const phrases = [
+  "Writer. Dreamer. Storyteller.",
+  "The mind behind Hamara Safar.",
+  "Turning feelings into words.",
+  "Mrityunjay."
+];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typeElement = document.getElementById('typeText');
+
+function type() {
+  const current = phrases[phraseIndex];
+  if (isDeleting) {
+    typeElement.textContent = current.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typeElement.textContent = current.substring(0, charIndex + 1);
+    charIndex++;
+  }
+  let typeSpeed = isDeleting ? 40 : 70;
+  if (!isDeleting && charIndex === current.length) {
+    typeSpeed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typeSpeed = 500;
+  }
+  setTimeout(type, typeSpeed);
+}
+type();
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      const bars = entry.target.querySelectorAll('.skill-bar-fill');
+      bars.forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        if (w) bar.style.width = w + '%';
+      });
+      const nums = entry.target.querySelectorAll('.stat-num');
+      nums.forEach(num => {
+        const target = parseInt(num.getAttribute('data-target'));
+        if (!isNaN(target) && !num.classList.contains('counted')) {
+          num.classList.add('counted');
+          animateNumber(num, target);
+        }
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function animateNumber(el, target) {
+  let current = 0;
+  const increment = target / 50;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current);
+  }, 30);
+}
+</script>
+
+</body>
+</html>
