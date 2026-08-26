@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credits | Hamara Safar</title>
+<style>
+:root {
+  --bg:#09060f; --card:rgba(24,14,31,.78); --line:rgba(255,205,235,.20);
+  --text:#f8eafa; --muted:#cbb6cc; --accent:#e7a9d2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at top,#24152d 0,#09060f 52%,#050309 100%);color:var(--text);font-family:Georgia,serif}
+body{overflow-x:hidden}
+.back{position:fixed;top:16px;left:16px;z-index:20;text-decoration:none;color:#f7dff0;border:1px solid var(--line);padding:9px 14px;border-radius:999px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px)}
+.page{width:min(1050px,94%);margin:auto;padding:34px 0 70px}
+.hero{text-align:center;margin:28px auto 26px}
+.hero h1{font-size:clamp(36px,7vw,68px);margin:0 0 8px;letter-spacing:2px}
+.hero p{margin:0;color:var(--muted);font-style:italic}
+.logo-button{display:block;width:min(560px,94%);margin:25px auto 10px;border:1px solid var(--line);background:rgba(10,5,14,.65);padding:10px;border-radius:22px;cursor:pointer;box-shadow:0 18px 70px rgba(0,0,0,.5);transition:.35s}
+.logo-button:hover{transform:translateY(-5px);box-shadow:0 25px 80px rgba(230,150,210,.15)}
+.logo-button img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:14px}
+.hint{text-align:center;color:#c9aec8;font-size:14px;margin:10px 0 35px}
+.section-title{text-align:center;margin:35px 0 20px;font-size:18px;letter-spacing:4px;text-transform:uppercase;color:#e9bfdc}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.profile-card{border:1px solid var(--line);background:var(--card);padding:10px;border-radius:16px;color:var(--text);cursor:pointer;text-align:left;transition:.3s;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.profile-card:hover{transform:translateY(-5px);border-color:rgba(255,205,235,.42)}
+.profile-card img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:#120b18}
+.profile-card span{display:block;font-size:22px;margin:10px 5px 2px}
+.profile-card small{display:block;color:var(--muted);margin:0 5px 7px}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(3,2,6,.93);display:none;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.modal-box{width:min(1000px,100%);height:min(94vh,900px);display:flex;flex-direction:column;position:relative}
+.close{position:absolute;right:5px;top:0;z-index:4;border:0;background:rgba(0,0,0,.65);color:#fff;width:42px;height:42px;border-radius:50%;font-size:26px;cursor:pointer}
+.modal-title{text-align:center;margin:0 50px 12px;font-size:24px;color:#f5cbe3}
+.viewer{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;position:relative}
+.viewer img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 20px 70px #000}
+.nav{position:absolute;top:50%;transform:translateY(-50%);border:1px solid var(--line);background:rgba(15,7,18,.8);color:#fff;width:46px;height:46px;border-radius:50%;font-size:24px;cursor:pointer}
+.prev{left:8px} .next{right:8px}
+.counter{text-align:center;color:var(--muted);padding:10px}
+.duo-view{display:none;position:fixed;inset:0;z-index:110;background:rgba(3,2,6,.94);align-items:center;justify-content:center;padding:18px}
+.duo-view.show{display:flex}
+.duo-box{width:min(850px,100%);max-height:94vh;position:relative;text-align:center}
+.duo-box img{max-width:100%;max-height:82vh;object-fit:contain;border-radius:12px;box-shadow:0 20px 80px #000}
+.duo-box h2{margin:0 0 12px;color:#f5cbe3}
+@media(max-width:600px){.page{padding-top:65px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.profile-card span{font-size:17px}}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← Home</a>
+
+<main class="page">
+<header class="hero">
+<h1>Hamara Safar</h1>
+<p>Credits • Characters • Story World</p>
+</header>
+
+<!-- FIRST: Story World (featured) -->
+<button class="logo-button" onclick="openProfile('STORY WORLD', ['IMG-20260824-WA0010.jpg','IMG-20260824-WA0011.jpg'])">
+<img src="credits/IMG-20260824-WA0010.jpg" alt="Story World">
+</button>
+<div class="hint">Tap to view Story World</div>
+
+<h2 class="section-title">Characters</h2>
+<section class="grid">
+<button class="profile-card" onclick="openProfile('JAY', ['IMG-20260824-WA0035.jpg','IMG-20260824-WA0034.jpg','IMG-20260824-WA0033.jpg','IMG-20260824-WA0012.jpg'])">
+<img src="credits/IMG-20260824-WA0035.jpg" alt="JAY profile">
+<span>JAY</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('SHREE', ['IMG-20260824-WA0030.jpg','IMG-20260824-WA0029.jpg','IMG-20260824-WA0028.jpg','IMG-20260824-WA0027.jpg','IMG-20260824-WA0031.jpg','IMG-20260824-WA0026.jpg','IMG-20260824-WA0025.jpg','IMG-20260824-WA0024.jpg'])">
+<img src="credits/IMG-20260824-WA0030.jpg" alt="SHREE profile">
+<span>SHREE</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('KRISH', ['IMG-20260824-WA0015.jpg','IMG-20260824-WA0014.jpg'])">
+<img src="credits/IMG-20260824-WA0015.jpg" alt="KRISH profile">
+<span>KRISH</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('YUVI', ['IMG-20260824-WA0019.jpg','IMG-20260824-WA0018.jpg'])">
+<img src="credits/IMG-20260824-WA0019.jpg" alt="YUVI profile">
+<span>YUVI</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('VISHU', ['IMG-20260824-WA0021.jpg','IMG-20260824-WA0020.jpg'])">
+<img src="credits/IMG-20260824-WA0021.jpg" alt="VISHU profile">
+<span>VISHU</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('PIYU', ['IMG-20260824-WA0023.jpg','IMG-20260824-WA0022.jpg'])">
+<img src="credits/IMG-20260824-WA0023.jpg" alt="PIYU profile">
+<span>PIYU</span>
+<small>Tap to view full data</small>
+</button>
+<button class="profile-card" onclick="openProfile('SONIYA', ['IMG-20260824-WA0017.jpg','IMG-20260824-WA0016.jpg'])">
+<img src="credits/IMG-20260824-WA0017.jpg" alt="SONIYA profile">
+<span>SONIYA</span>
+<small>Tap to view full data</small>
+</button>
+</section>
+</main>
+
+<div class="modal" id="profileModal" onclick="if(event.target===this)closeProfile()">
+<div class="modal-box">
+<button class="close" onclick="closeProfile()">×</button>
+<h2 class="modal-title" id="modalTitle"></h2>
+<div class="viewer">
+<button class="nav prev" onclick="changeImage(-1)">‹</button>
+<img id="modalImage" src="" alt="Profile data">
+<button class="nav next" onclick="changeImage(1)">›</button>
+</div>
+<div class="counter" id="counter"></div>
+</div>
+</div>
+
+<script>
+let currentImages=[], currentIndex=0;
+
+function openProfile(name, images) {
+currentImages=images; currentIndex=0;
+document.getElementById('modalTitle').textContent=name;
+document.getElementById('profileModal').classList.add('show');
+renderImage();
+}
+function closeProfile() {
+document.getElementById('profileModal').classList.remove('show');
+}
+function changeImage(step) {
+currentIndex=(currentIndex+step+currentImages.length)%currentImages.length;
+renderImage();
+}
+function renderImage() {
+document.getElementById('modalImage').src='credits/'+currentImages[currentIndex];
+document.getElementById('counter').textContent=(currentIndex+1)+' / '+currentImages.length;
+}
+document.addEventListener('keydown', e => {
+if(e.key==='Escape') closeProfile();
+if(document.getElementById('profileModal').classList.contains('show')) {
+if(e.key==='ArrowLeft') changeImage(-1);
+if(e.key==='ArrowRight') changeImage(1);
+}
+});
+</script>
+</body>
+</html>

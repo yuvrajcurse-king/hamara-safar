@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Comic · Arc 1 | Humara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:100%; min-height:100%;
+  background:#060910;
+  color:#e8e4d9;
+  font-family:'Outfit',sans-serif;
+  overflow-x:hidden;
+}
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px;
+  background:linear-gradient(to bottom, rgba(6,10,20,0.95), transparent);
+  backdrop-filter:blur(8px);
+}
+.nav-logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:15px; letter-spacing:3px;
+  color:#fff; text-decoration:none;
+}
+.nav-back {
+  font-family:'Space Mono',monospace;
+  font-size:10px; letter-spacing:2px;
+  color:rgba(255,255,255,0.5);
+  text-decoration:none; text-transform:uppercase;
+  border:1px solid rgba(120,140,170,0.15);
+  padding:6px 12px; border-radius:4px;
+  transition:all .25s;
+}
+.nav-back:hover { color:#fff; border-color:rgba(255,255,255,0.3); }
+
+.header {
+  text-align:center;
+  padding:80px 20px 24px;
+}
+.header .arc {
+  font-family:'Space Mono',monospace;
+  font-size:11px; letter-spacing:3px;
+  color:rgba(180,200,230,0.5);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.header h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(28px,6vw,42px);
+  letter-spacing:4px;
+  color:#fff;
+}
+.header .sub {
+  margin-top:8px;
+  font-size:13px;
+  color:rgba(180,200,230,0.55);
+}
+
+.comic-container {
+  max-width:720px;
+  margin:0 auto;
+  padding:0 8px 80px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.comic-page {
+  width:100%;
+  border-radius:4px;
+  overflow:hidden;
+  background:#111;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+}
+.comic-page img {
+  width:100%;
+  height:auto;
+  display:block;
+  vertical-align:middle;
+}
+.page-num {
+  text-align:center;
+  font-family:'Space Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(150,170,200,0.35);
+  padding:8px 0 4px;
+}
+
+.cover-banner {
+  max-width:720px;
+  margin:0 auto 16px;
+  padding:0 8px;
+}
+.cover-banner img {
+  width:100%;
+  border-radius:6px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+}
+
+.footer {
+  text-align:center;
+  padding:40px 20px 60px;
+  color:rgba(150,170,200,0.4);
+  font-size:12px;
+  letter-spacing:1px;
+}
+.footer a { color:rgba(180,200,230,0.6); text-decoration:none; }
+
+/* progress bar */
+.progress {
+  position:fixed; top:0; left:0; height:2px;
+  background:linear-gradient(90deg,#6b8cae,#a0c0e0);
+  width:0%; z-index:200;
+  transition:width .1s linear;
+}
+</style>
+
+<style id="arabian-midnight-theme">
+html, body {
+  min-height: 100%;
+}
+body {
+  background-image:
+    linear-gradient(rgba(5,3,12,.72), rgba(5,3,12,.78)),
+    url("assets/persian-midnight.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-color: #07040d !important;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,214,160,.12), transparent 22%),
+    radial-gradient(circle at 82% 12%, rgba(157,121,255,.13), transparent 25%),
+    radial-gradient(circle at 50% 90%, rgba(218,145,67,.10), transparent 28%);
+  mix-blend-mode: screen;
+}
+.hero, .page > section, .card, .panel, .container, .content, main > section {
+  backdrop-filter: blur(2px);
+}
+</style>
+<style id="persian-midnight-global">html,body{background:#061022 url("assets/persian-midnight.png") center center/cover fixed no-repeat !important;}body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(3,7,20,.48),rgba(3,7,20,.62));pointer-events:none;}</style><style id="hs-scene-background">
+html, body { min-height: 100%; }
+body.hs-scene-bg {
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-color: #050812 !important;
+}
+body.hs-scene-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--hs-scene-image) center center / cover no-repeat;
+  transform: scale(1.015);
+}
+body.hs-scene-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3,7,18,.22), rgba(3,6,16,.66)),
+    radial-gradient(circle at 50% 20%, rgba(26,71,112,.10), transparent 52%);
+}
+body.hs-scene-bg > * { position: relative; z-index: 0; }
+body.hs-read-scene .reader-shell,
+body.hs-read-scene .book-shell,
+body.hs-read-scene .reader,
+body.hs-read-scene .book {
+  isolation: isolate;
+}
+body.hs-read-scene .book-page,
+body.hs-read-scene .page,
+body.hs-read-scene .sheet,
+body.hs-read-scene .book-paper {
+  box-shadow:
+    0 26px 70px rgba(0,0,0,.55),
+    0 0 0 1px rgba(206,167,91,.28);
+}
+body.hs-scene-bg .panel,
+body.hs-scene-bg .card,
+body.hs-scene-bg .glass,
+body.hs-scene-bg .section-card {
+  backdrop-filter: blur(3px);
+}
+@media (max-width: 700px) {
+  body.hs-scene-bg::before { background-position: center center; }
+  body.hs-scene-bg::after { background: linear-gradient(180deg, rgba(3,7,18,.34), rgba(3,6,16,.74)); }
+}
+body.hs-scene-bg { --hs-scene-image: url('assets/bg-waterfall.png'); }</style>
+</head>
+<body class="hs-scene-bg">
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 120% 80% at 50% -10%,#1a2744 0%,transparent 55%),linear-gradient(180deg,#0a101c 0%,#060910 60%,#04060c 100%)"></div>
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1.5px 1.5px at 12% 20%,rgba(255,255,240,.7),transparent),radial-gradient(1px 1px at 40% 50%,rgba(255,255,240,.45),transparent),radial-gradient(1.5px 1.5px at 75% 25%,rgba(255,255,240,.55),transparent)"></div>
+
+  <div class="progress" id="progress"></div>
+  <nav class="nav">
+    <a href="home.html" class="nav-logo">HAMARA SAFAR</a>
+    <a href="home.html" class="nav-back">← Home</a>
+  </nav>
+
+  <div class="header">
+    <div class="arc">Arc 1 · Ek Anjaani Shuruaat</div>
+    <h1>COMIC</h1>
+    <div class="sub">Pehli Nazar · National Level · Wo Mere School Mein Thi</div>
+  </div>
+
+  <!-- Cover (color version) -->
+  <div class="cover-banner">
+    <img src="comic/IMG-20260822-WA0002.jpg" alt="Cover — Chapter 1: Pehli Nazar" loading="eager">
+  </div>
+
+  <div class="comic-container" id="comic">
+    <!-- Story pages in correct sequence by printed page number (01–26). Color preferred where both versions exist. -->
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0000.jpg" alt="Page 01" loading="lazy">
+    </div>
+    <div class="page-num">— 01 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0029.jpg" alt="Page 02" loading="lazy">
+    </div>
+    <div class="page-num">— 02 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0028.jpg" alt="Page 03" loading="lazy">
+    </div>
+    <div class="page-num">— 03 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0027.jpg" alt="Page 04" loading="lazy">
+    </div>
+    <div class="page-num">— 04 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0026.jpg" alt="Page 05" loading="lazy">
+    </div>
+    <div class="page-num">— 05 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0025.jpg" alt="Page 06" loading="lazy">
+    </div>
+    <div class="page-num">— 06 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0024.jpg" alt="Page 07" loading="lazy">
+    </div>
+    <div class="page-num">— 07 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0023.jpg" alt="Page 08" loading="lazy">
+    </div>
+    <div class="page-num">— 08 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0022.jpg" alt="Page 09" loading="lazy">
+    </div>
+    <div class="page-num">— 09 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0021.jpg" alt="Page 10" loading="lazy">
+    </div>
+    <div class="page-num">— 10 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0020.jpg" alt="Page 11" loading="lazy">
+    </div>
+    <div class="page-num">— 11 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0019.jpg" alt="Page 12" loading="lazy">
+    </div>
+    <div class="page-num">— 12 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0018.jpg" alt="Page 13" loading="lazy">
+    </div>
+    <div class="page-num">— 13 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0017.jpg" alt="Page 14" loading="lazy">
+    </div>
+    <div class="page-num">— 14 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0016.jpg" alt="Page 15" loading="lazy">
+    </div>
+    <div class="page-num">— 15 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0015.jpg" alt="Page 16" loading="lazy">
+    </div>
+    <div class="page-num">— 16 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0014.jpg" alt="Page 17" loading="lazy">
+    </div>
+    <div class="page-num">— 17 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0013.jpg" alt="Page 18" loading="lazy">
+    </div>
+    <div class="page-num">— 18 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0012.jpg" alt="Page 19" loading="lazy">
+    </div>
+    <div class="page-num">— 19 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0011.jpg" alt="Page 20" loading="lazy">
+    </div>
+    <div class="page-num">— 20 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0010.jpg" alt="Page 21" loading="lazy">
+    </div>
+    <div class="page-num">— 21 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0001.jpg" alt="Page 22" loading="lazy">
+    </div>
+    <div class="page-num">— 22 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0009.jpg" alt="Page 23" loading="lazy">
+    </div>
+    <div class="page-num">— 23 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0008.jpg" alt="Page 24" loading="lazy">
+    </div>
+    <div class="page-num">— 24 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0005.jpg" alt="Page 25" loading="lazy">
+    </div>
+    <div class="page-num">— 25 —</div>
+
+    <div class="comic-page">
+      <img src="comic/IMG-20260822-WA0004.jpg" alt="Page 26 — Chapter 1 End" loading="lazy">
+    </div>
+    <div class="page-num">— 26 —</div>
+
+  </div>
+
+  <div class="footer">
+    <p>Arc 1 Comic Complete</p>
+    <p style="margin-top:8px;"><a href="read.html">Read the full story →</a></p>
+    <p style="margin-top:16px;opacity:0.5;">© Mrityunjay as Jay · Humara Safar</p>
+  </div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    document.getElementById('progress').style.width = p + '%';
+  });
+</script>
+</body>
+</html>

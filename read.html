@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Read · Humara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b2117;--ink-soft:#5a4731;--gold:#9a7024;--gold2:#c8a55c;--paper:#f7efdf;--paper2:#eadcc0;--night:#050817}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Cormorant Garamond",Georgia,serif;color:#eee}
+body{background:#050817 url('assets/persian-midnight.png') center/cover fixed no-repeat;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(2,5,16,.48),rgba(2,4,12,.80));z-index:-2}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 15%,rgba(239,198,112,.12),transparent 23%),radial-gradient(circle at 85% 12%,rgba(111,139,255,.12),transparent 25%);z-index:-1}
+.top{position:sticky;top:0;z-index:30;padding:12px 16px;background:rgba(4,7,18,.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(197,162,90,.25);display:flex;align-items:center;gap:14px;justify-content:space-between}
+.top a{color:#e8d5a3;text-decoration:none;font-family:Cinzel,serif;font-size:11px;letter-spacing:2px}.brand{font-family:"Great Vibes",cursive;font-size:30px;color:#e8d5a3}.counter{font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;color:#a9a091;min-width:55px;text-align:right}
+.wrap{width:min(1100px,94%);margin:auto;padding:28px 0 80px}.hero{text-align:center;margin:8px auto 28px}.hero h1{font-family:"Great Vibes",cursive;font-size:clamp(54px,9vw,88px);margin:0;color:#ead6a2;text-shadow:0 8px 35px #000}.hero p{font-family:Cinzel,serif;letter-spacing:4px;text-transform:uppercase;font-size:10px;color:#c7ae74}
+.index{display:flex;gap:8px;overflow:auto;padding:6px 2px 15px;scrollbar-width:none;justify-content:center}.index::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;border:1px solid rgba(197,162,90,.28);background:rgba(8,13,28,.72);color:#cfc5ae;border-radius:999px;padding:9px 14px;cursor:pointer;font-family:Cinzel,serif;font-size:10px;letter-spacing:1px;transition:.25s}.tab:hover,.tab.active{color:#f0dba8;border-color:#c5a25a;background:rgba(154,112,36,.20);transform:translateY(-1px)}
+.reader{position:relative;max-width:950px;margin:0 auto}.book{position:relative;background:linear-gradient(135deg,#2e1d0e 0%,#8e6527 3%,#5b3c1b 50%,#9d7331 97%,#321f10 100%);padding:12px;border-radius:13px;box-shadow:0 35px 90px #000c;perspective:2200px;overflow:visible}.book:before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,230,160,.28);border-radius:9px;pointer-events:none}.book:after{content:"";position:absolute;left:50%;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,transparent,rgba(47,28,12,.38),rgba(255,232,166,.18),transparent);transform:translateX(-50%);pointer-events:none;z-index:6}
+.page-layer{position:relative;min-height:700px;border-radius:7px;transform-style:preserve-3d}.page-layer.base{background:linear-gradient(135deg,rgba(249,242,225,.995),rgba(236,222,194,.995));color:var(--ink);padding:58px 8.5%;box-shadow:inset 0 0 70px rgba(112,77,24,.10),0 10px 30px #0005;overflow:hidden}.page-layer.base:before,.page-layer.flip:before{content:"❦";position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:22px;color:#9a7024}.page-layer.base:after,.page-layer.flip:after{content:"";position:absolute;inset:18px;border:1px solid rgba(154,112,36,.22);pointer-events:none}.page-layer.flip{position:absolute;inset:0;z-index:5;background:linear-gradient(135deg,rgba(249,242,225,.995),rgba(236,222,194,.995));color:var(--ink);padding:58px 8.5%;box-shadow:inset 0 0 70px rgba(112,77,24,.10),0 10px 30px #0005;overflow:hidden;backface-visibility:hidden;transform-style:preserve-3d}.page-layer.flip.next{transform-origin:left center;animation:flipNext .72s cubic-bezier(.22,.61,.36,1) forwards}.page-layer.flip.prev{transform-origin:right center;animation:flipPrev .72s cubic-bezier(.22,.61,.36,1) forwards}
+@keyframes flipNext{0%{transform:rotateY(0deg);box-shadow:0 10px 30px #0005}48%{box-shadow:-28px 20px 45px #0008}100%{transform:rotateY(-180deg);box-shadow:0 0 0 transparent}}
+@keyframes flipPrev{0%{transform:rotateY(0deg);box-shadow:0 10px 30px #0005}48%{box-shadow:28px 20px 45px #0008}100%{transform:rotateY(180deg);box-shadow:0 0 0 transparent}}
+.kicker{text-align:center;font-family:Cinzel,serif;font-size:10px;letter-spacing:4px;color:#8d6826;text-transform:uppercase}.title{text-align:center;font-family:"Great Vibes",cursive;font-size:54px;line-height:1.1;color:#62471e;margin:10px 0}.sub{text-align:center;font-family:Cinzel,serif;font-size:11px;letter-spacing:2px;color:#8b7653;text-transform:uppercase}.rule{height:1px;background:linear-gradient(90deg,transparent,#9a7024,transparent);margin:22px auto;width:55%}
+.page-text{font-size:20px;line-height:1.72;min-height:500px;position:relative;z-index:2;font-weight:500}.page-text p{margin:0 0 15px;text-align:left;white-space:pre-wrap}.page-text p:first-child:first-letter{font-size:2.6em;float:left;line-height:.78;padding:6px 8px 0 0;color:#8d6826;font-family:"Playfair Display",serif}.page-text strong{font-family:"Cinzel",serif;font-size:.78em;letter-spacing:.3px;color:#6e4b1e}.page-no{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:#8d7650}.chapter-label{margin:0 auto 12px;max-width:950px;text-align:center;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:#c7b99f;text-transform:uppercase}
+.controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}.ctrl{border:1px solid rgba(197,162,90,.4);background:rgba(8,13,28,.82);color:#ead6a2;border-radius:999px;padding:11px 19px;cursor:pointer;font-family:Cinzel,serif;font-size:10px;letter-spacing:1px;transition:.25s}.ctrl:hover:not(:disabled){transform:translateY(-2px);border-color:#c5a25a;background:rgba(154,112,36,.20)}.ctrl:disabled{opacity:.28;cursor:not-allowed}.pagecount{font-family:Cinzel,serif;font-size:10px;letter-spacing:1.5px;color:#bcae95;min-width:110px;text-align:center}.hint{text-align:center;color:#b9af9c;font-size:12px;margin-top:14px}.end{text-align:center;font-family:"Great Vibes",cursive;font-size:28px;color:#8d6826;margin-top:20px}
+@media(max-width:760px){.page-layer.base,.page-layer.flip{min-height:620px;padding:48px 7% 58px}.page-text{font-size:17px;line-height:1.72;min-height:440px}.title{font-size:44px}.index{justify-content:flex-start}.book:after{opacity:.4}.controls{gap:8px}.ctrl{padding:10px 12px}.pagecount{min-width:90px}}
+@media(prefers-reduced-motion:reduce){.page-layer.flip.next,.page-layer.flip.prev{animation-duration:.01ms}}
+</style>
+<style>
+/* ===== Persian Midnight Manuscript — Book Look v2 ===== */
+:root{
+  --paper:#f4ead3;
+  --paper2:#eadab8;
+  --ink:#2b211b;
+  --gold:#a9782d;
+  --gold2:#d3ad5c;
+  --wine:#5a2630;
+}
+body.book-page{
+  background:transparent !important;
+}
+.book-shell,.book,.reader,.book-container{
+  perspective:1800px;
+}
+.book-page, .page, .book-paper, .sheet{
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.42), transparent 26%),
+    radial-gradient(circle at 82% 88%, rgba(108,70,25,.09), transparent 30%),
+    linear-gradient(90deg, rgba(87,54,18,.08), transparent 5%, transparent 95%, rgba(87,54,18,.10)),
+    repeating-linear-gradient(0deg, rgba(100,65,25,.018) 0 1px, transparent 1px 4px),
+    var(--paper) !important;
+  color:var(--ink) !important;
+  border:1px solid rgba(116,76,27,.30) !important;
+  border-radius:4px !important;
+  box-shadow:
+    0 22px 45px rgba(0,0,0,.38),
+    0 3px 0 rgba(255,255,255,.45) inset,
+    0 -3px 0 rgba(74,43,14,.07) inset !important;
+  position:relative;
+  overflow:hidden;
+}
+.book-page::before,.page::before,.book-paper::before,.sheet::before{
+  content:"";
+  position:absolute; inset:14px;
+  border:1px solid rgba(169,120,45,.45);
+  pointer-events:none;
+  border-radius:2px;
+}
+.book-page::after,.page::after,.book-paper::after,.sheet::after{
+  content:"";
+  position:absolute; inset:20px;
+  border:1px solid rgba(169,120,45,.16);
+  pointer-events:none;
+}
+.page-content,.book-content,.page-inner,.content{
+  max-width:720px !important;
+  margin:auto !important;
+  padding:58px 68px 64px !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:18px !important;
+  line-height:1.85 !important;
+  letter-spacing:.01em !important;
+  text-align:justify !important;
+}
+.chapter-title,h1.chapter-title{
+  font-family:Georgia,"Times New Roman",serif !important;
+  color:var(--wine) !important;
+  text-align:center !important;
+  font-size:30px !important;
+  letter-spacing:.06em !important;
+  margin:12px 0 26px !important;
+}
+.chapter-title::after{
+  content:"✦  ❦  ✦";
+  display:block;
+  color:var(--gold);
+  font-size:15px;
+  margin-top:10px;
+  letter-spacing:.3em;
+}
+.page-number{
+  position:absolute !important;
+  bottom:18px !important;
+  left:0 !important;
+  right:0 !important;
+  text-align:center !important;
+  color:#87672f !important;
+  font-family:Georgia,serif !important;
+  font-size:13px !important;
+}
+.reader-controls{
+  background:rgba(20,10,18,.78) !important;
+  border:1px solid rgba(211,173,92,.35) !important;
+  backdrop-filter:blur(12px);
+  border-radius:999px !important;
+}
+.reader-controls button{
+  border-radius:50% !important;
+  min-width:44px !important;
+  min-height:44px !important;
+}
+.book-cover{
+  background:
+    radial-gradient(circle at 50% 40%, rgba(211,173,92,.16), transparent 36%),
+    linear-gradient(135deg,#291b20,#100b12 60%,#26181b) !important;
+  border:8px double rgba(211,173,92,.72) !important;
+  box-shadow:0 30px 70px rgba(0,0,0,.58), 0 0 0 2px rgba(90,38,48,.8) inset !important;
+}
+.book-cover::before{
+  content:"❦";
+  position:absolute; inset:18px;
+  border:1px solid rgba(211,173,92,.5);
+  color:rgba(211,173,92,.75);
+  display:flex; align-items:flex-start; justify-content:center;
+  padding-top:24px; font-size:22px;
+}
+@media(max-width:700px){
+  .page-content,.book-content,.page-inner,.content{padding:45px 30px 55px !important;font-size:16px !important;line-height:1.75 !important}
+  .chapter-title{font-size:24px !important}
+}
+</style>
+<style id="hs-scene-background">
+/* ===== Humara Safar — Persian Midnight Scene Backgrounds ===== */
+html, body { min-height: 100%; }
+body.hs-scene-bg {
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-color: #050812 !important;
+}
+body.hs-scene-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--hs-scene-image) center center / cover no-repeat;
+  transform: scale(1.015);
+}
+body.hs-scene-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3,7,18,.22), rgba(3,6,16,.66)),
+    radial-gradient(circle at 50% 20%, rgba(26,71,112,.10), transparent 52%);
+}
+body.hs-scene-bg > * { position: relative; z-index: 0; }
+
+/* Keep reading text comfortable over the palace background. */
+body.hs-read-scene .reader-shell,
+body.hs-read-scene .book-shell,
+body.hs-read-scene .reader,
+body.hs-read-scene .book {
+  isolation: isolate;
+}
+body.hs-read-scene .book-page,
+body.hs-read-scene .page,
+body.hs-read-scene .sheet,
+body.hs-read-scene .book-paper {
+  box-shadow:
+    0 26px 70px rgba(0,0,0,.55),
+    0 0 0 1px rgba(206,167,91,.28);
+}
+
+/* Give scene-based pages a cinematic glass layer without washing out the art. */
+body.hs-scene-bg .panel,
+body.hs-scene-bg .card,
+body.hs-scene-bg .glass,
+body.hs-scene-bg .section-card {
+  backdrop-filter: blur(3px);
+}
+@media (max-width: 700px) {
+  body.hs-scene-bg::before { background-position: center center; }
+  body.hs-scene-bg::after { background: linear-gradient(180deg, rgba(3,7,18,.34), rgba(3,6,16,.74)); }
+}
+
+body.hs-scene-bg { --hs-scene-image: url('assets/bg-palace.png'); }</style>
+</head>
+<body class="hs-scene-bg hs-read-scene">
+<div class="top"><a href="home.html">← HOME</a><div class="brand">Humara Safar</div><div class="counter" id="counter">1 / 6</div></div>
+<main class="wrap">
+<header class="hero"><h1>Read the Dastaan</h1><p>Turn the pages of the complete story</p></header>
+<nav class="index" id="index"></nav>
+<div class="chapter-label" id="chapterLabel"></div>
+<section class="reader" id="reader"></section>
+<div class="controls">
+<button class="ctrl" id="prev" onclick="turnPage(-1)">‹ Previous Page</button>
+<div class="pagecount" id="pagecount">Page 1 / 1</div>
+<button class="ctrl" id="next" onclick="turnPage(1)">Next Page ›</button>
+</div>
+<div class="hint">Use the buttons or ← → keys to turn the pages.</div>
+</main>
+<script>
+const chapters=[{"id": "ch1", "kicker": "Arc 1 · Ek Anjaani Shuruaat", "title": "Pehli Nazar", "sub": "Chapter 1", "pages": ["<p>Chapter 1<\/p><p>Pehli Nazar\n“wo din mujhe aaj bhe yaad ha,\nJab maine use Pehli baar dekha\ntha\"\nDistrict level ka match chal raha\ntha. Hall mein sab players aur\ncoach the, aur wahan par mujhe\nnahi pata tha ki meri zindagi\nbadalne wali thi.\nUdhar match ho raha tha. Main<\/p>", "<p>apni team ke players ko support\nkar raha tha. Sab kuch aam tha.\nLekin phir meri nazar us par\npadi. Us waqt mujhe nahi pata\ntha ki woh kaun hai aur mujhe\nkyu aur \"mujha kyu kuch ajeeb\nlag raha hai.<\/p><p>Phir achanak mera dost mujhe\nbola, ‘Jay, kahan khoya hai?\nUdhar tera match hai,aur players\nbhi aa chuke hain.\"<\/p><p>Jaise hi main samjha, main unke\npaas chala gaya.<\/p><p>Phir maine apna match khela aur<\/p>", "<p>silver aaya tha.\nPhir last mein mujhe pata chala\nki woh to hamari team mein thi,\naur hamare school mein bhi hai.\nMujhe pata nahi kyu, lekin us\nwaqt main bahut khush tha aur\nus din mein kuch alag tha.\nLekin zindagi aksar wahi\nkahaniyan likhti hai, jinhe hum\npehli nazar mein samajh nahi\npaate...<\/p><p>To be continued...<\/p>"]}, {"id": "ch2", "kicker": "Arc 1 · Ek Anjaani Shuruaat", "title": "National Level", "sub": "Chapter 2", "pages": ["<p>Chapter 2<\/p><p>National level\n\"Yeh National ka time tha, ya kahun\nuse se pehli baar baat karne ka time\ntha.\"\nMujhe yaad hai, maine use white T-\nshirt, khule hue baal aur sundar si\naankhon mein dekha. Mujhe aisa\nlaga jaise waqt ruk sa gaya ho aur\nuski hansi ke paas hi thahar gaya\nho. Phir maine himmat karke use se\nbaat ki.<\/p>", "<p>Jay: \"Hey, suno!\"<\/p><p>~: \"Haan bolo, Jay.\"<\/p><p>Jay: \"Tum mujhe jaanti ho?\"<\/p><p>~: \"Haan, tum hamari team mein ho,\nisliye jaanti hoon.\"<\/p><p>Jay : \"Haan, main tumhara naam\njaan sakta hoon?\"<\/p><p>~: \"Haan, kyu nahi?\"<\/p><p>Soniya: \"Ayy!\"<\/p><p>~: \"Haan bolo, Soniya.\"<\/p><p>Soniya: \"Udhar chalo jaldi, ek kaam\nhai.\"<\/p><p>~: \"Chalo.\"<\/p><p>~: \"Jay, main tumse baad mein milti\nhoon.\"<\/p>", "<p>Phir usne Jay ki taraf dekha aur\nchali gayi.<\/p><p>Phir udhar match ho raha tha aur\nmain to use hi dekhta ja raha tha.\nJaise meri nazar us se hat hi nahi\nrahi ho.<\/p><p>Main apna semi-final match khel\nraha tha. Sab mujhe support kar\nrahe the. Soniya bhi kar rahi thi. Woh\nmeri behen jaisi thi. Main jeet bhi\ngaya aur woh bhi dekh rahi thi.<\/p><p>Phir National ke baad hum ghar aa\nrahe the. Use waqt to kuch khaas\nhua nahi, lekin main to use ke khayal\nmein tha.<\/p>", "<p>Mera dost bol raha ha ke,\n\"Tujhe kya hua hai? Tu kahin khoya\nhua lagta hai aaj kal.\"\n\"Main hans kar baat taal gaya,\nkyunki main kis ko batata ki main\nkis ke baare mein soch raha tha.\"\nAur use ko to us wagqt tak kuch pata\nbhi nahi tha ki...\nPhir...<\/p><p>To Be Continued...<\/p>"]}, {"id": "ch3", "kicker": "Arc 1 · Ek Anjaani Shuruaat", "title": "Wo Mere School mein thi", "sub": "Chapter 3", "pages": ["<p>Chapter 3\nWo Mere School mein thi\n“Mujhe jab pata chala ki wo mere\nschool mein ha, to main bahut\nkhush hua.\"\nMai Class 5th mein tha. Main player\ntha aur thoda famous bhi tha. Phir\n5th period mein sir achanak se bole:\nSir: ‘Abe oye Jay, kya kar raha ho?\nYahan Maths ka hard question hai\naur tum...\"\nJay: \"Sif, sorry... main thoda...\"\nSir: 'chro,lska answer batao.\"”<\/p>", "<p>Jay: \"sir, Answer...\"\n(Tabhi piyu dhure se bola )<\/p><p>Piyu: \"Bhi, answer v2 hai.\"\nJay: \"Si, V2 answer hai.\"\nSir: \"Jay, sach mein?\"\nJay: \"Piyu, sahi hai na?\"\nPiyu: “Haan bhi.\"\nJay: \"Haan sir.\"\nSir: \"Good. Ab samajh aaya? Chalo,\n20 push-ups aur 30 second ka hold\nkaro.\"\nJay: \"Sif, kya answer galat tha?\"\nSir: \"Haan, Jay. Chalo, aage.\"<\/p><p>Puri class hansne lagi\nJay: \"Piyu...\"\nPiyu: \"Bhi, galti se 2 ka answer bata<\/p>", "<p>diya.\"<\/p><p>Phir maine 20 push-ups aur 30\nsecond ka hold kiya.<\/p><p>Break mein mere do dost bole:\nDost: \"Jay, kahin khoya hua hai kya\naaj kal?\"<\/p><p>Wo mere class friends the.<\/p><p>Jay: \"Bhi, mujhe lagta hai main ek\nladki ko pasand karta hoon.\"\nDost: \"Kaun hai? Bata na.\"<\/p><p>Jay: \"Naam to pata nahi, lekin wo<\/p>", "<p>hamare school mein hai. wo hamare\nteam ma ha.\"\nEk dost bola:<\/p><p>: \"To jaakar list dekh le.\"\nJay: \"hmm\"\nBreak khatam hone se pehle Jay\ncorridor ma bhaaga. Or notice board\nki taraf, Wahan notice board par\nstudents ki list lagi thi.\nJay ne jaldi-jaldi list dekhni shuru ki.\nPhir uski nazar ek naam par jaakar\nruk gayi...<\/p><p>\"Shree - Class 7th\"<\/p>", "<p>Ek pal ke liye Jay chup ho gaya.\nUska liya waqt ruke gaya ho or shree\nuska samna ho. Shree ko dhakta he,\njay ke akho ma asu aa gaya.<\/p><p>Tabhi Piyu wahan aa gaya.<\/p><p>Piyu: \"Bhi, naam pata chala?\"<\/p><p>Jay: \"Haan... Shree. Class 7th.\"\nPiyu: “Bhi, wo to senior hai tujhse.\"\nJay: \"Haan... pata hai.\"<\/p><p>Thodi der ke liye dono chup rahe.\nLekin Jay ke chehre par ek alag si\nkhushi thi.<\/p>", "<p>Thodi der baad Jay ne door se\nShree ko dekha. Wo apni class ki\ntaraf ja rahi thi.<\/p><p>Jay chup tha, lekin uski nazar baar-\nbaar shree ke taraf chali jaati thi.\nAb Jay use door ya kahi se base\nshree ko dekhta tha. Break mein,\ncorridor mein, ya school ke kisi bhi\nkone mein.<\/p><p>Jay base shree ko dhakta tha.<\/p><p>Phir Class 5th yahin par khatam hui.\nFinal exams bhi ho gaye. Ab Jay 6th\nmein tha aur Shree 8th mein.<\/p>", "<p>Lekin kahani abhi shuru hui thi.<\/p><p>Us waqt Jay ko nahi pata tha ki ye\nsirf ek chhoti si pasand hai ya uski\nzindagi ki sabse badi kahani Suru\nya banne wali ha.\nAur...<\/p><p>Jay ko Shree se pyaar ho gaya tha\nya..\nhone laga tha.\nPhir...\nTo Be Continued...<\/p>"]}, {"id": "ch4", "kicker": "Arc 2 · Roz Ka Intezaar", "title": "Nazrein Uski Taraf", "sub": "Chapter 4", "pages": ["<p>Chapter 4:<\/p><p>Nazrein Uski Taraf\nAbe mano school kuch alag sa\nho gaya tha. School jana ab\nachha lagne laga tha. Aur jis din\nShree nahi aati, us din school\nJay ko narak jaisa lagne lagta\ntha.\nAb main, Jay, Class 6 mein tha\naur Shree Class 8 mein. Main\nusko har jagah dekhta tha,\ncorridor mein, ground mein, ya<\/p>", "<p>kabhi-kabhi uski class ke paas.\nIs sab mein Class 6 kab beet\ngaya, maloom hi nahi chala. Par\nye Class 6 bahut si chhoti-chhoti\nyaadein rakhne wali thi.\nPhir ek din...\nEk period ki class thi. Sir kisi\nkaam mein the, aur class\nsambhalne ke liye Shree help\nkarne aayi thi. Jaise hi woh class\nmein aayi, saare ladke meri taraf\ndekhne lage aur bole,<\/p><p>\"Bhabhi aayi hai!\"<\/p>", "<p>Main to use dekhte hi kahin kho\ngaya tha. Pura period hi mano\nkuch alag tha. Main bas usko\ndekhe ja raha tha.<\/p><p>Shree ki woh aankhen, woh baal,\nwoh hansi, woh muskurana, woh\nbaat karna, woh kisi ko dekhna,\nuske gaal, uske haathon ki\nnaramiyat...<\/p><p>Aur Jay ke paas shabd hi kam\npad jaate the. Aisi thi Shree.<\/p><p>Jab bell baji, to Shree apni class\nmein chali gayi. Lekin Jay use<\/p>", "<p>jaate hue bhi dekhta hi raha.\nPhir mere doston ne bola,<\/p><p>\"Teri to nikal padi! Tu to bahut\nkhush ho gaya hoga.\"\nPhir break mein main Shree ko\ndekh raha tha. Shree apni doston\nke saath thi.<\/p><p>Us waqt woh bahut pyari lag rahi\nthi.\nJay class ka singer bhi tha. Jab\nfree period hota, to woh gaane<\/p>", "<p>bhi gaata tha.\nSabko uska gaana bahut pasand\naata tha.\nPhir...\nEk din...\nTo Be Continued...<\/p>"]}, {"id": "ch5", "kicker": "Arc 2 · Roz Ka Intezaar", "title": "Bheed Mein Ek Chehra", "sub": "Chapter 5", "pages": ["<p>Chapter 5:<\/p><p>Bheed Mein Ek Chehra\n\"Ek pyaar karne wala hi jaanta\nhai ki pyaar kya hai aur pyaar\nkitna khubsurat hota hai.\"\nJay bhi Shree ke pyaar mein\ndooba hua tha. Aaj assembly\nground mein ho rahi thi. Sabhi\nclasses line mein lage hue the\naur aaj Jay late ho gaya tha. Jab\nwoh school pahuncha, tab\nassembly shuru hone wali thi.\nTab usne Shree ko dekha. Woh<\/p>", "<p>apni class ki line ke saath\nground mein ja rahi thi.<\/p><p>Tab Jay ne class mein bag rakha\naur ground ki taraf bhaaga. Phir\nusne Shree ko dekha. Woh bahut\nkhush ho gaya tha. Jab sab line\nmein prayer kar rahe the, tab bhi\nwoh Shree ke baare mein hi soch\nraha tha...<\/p><p>Ab prayer ho gayi thi. Assembly\nke beech mein bhi woh sirf Shree\nke baare mein hi soch raha tha.\nPhir meri nazar us par gayi. Main<\/p>", "<p>to use hi dhoondh raha tha. Woh\nus waqt bahut cute aur sundar\nlag rahi thi. Maano poori\nassembly maine sirf Shree ko hi\ndekha. Phir assembly khatam\nhui aur hum apni class mein\ngaye, par main to Shree ke\nkhayalon mein hi tha.<\/p><p>Phir attendance hui. Main\nlagbhag bhool hi gaya tha, par\nbach gaya absent hone se.<\/p><p>Phir 1st period chal raha tha.\nSab padh rahe the, lekin main\nuske baare mein soch raha tha<\/p>", "<p>aur uska naam \"Shree\" baar-baar\nbook aur copy par likh raha tha.\nPhir 2nd aur 3rd period ke baad\nbreak hua.<\/p><p>Maine Shree ko dekha. Woh\nground mein apni doston ke\nsaath thi. Main upar 1st floor se\nuse dekh raha tha. Shree us\nwaqt bahut sundar aur cute lag\nrahi thi. Mera mann kar raha tha\nki use gale laga loon aur kabhi\nusse door na hoon. Lagbhag sab\nclassmates jaante the ki main\nShree se pyaar karta hoon.<\/p>", "<p>Break ke baad hamara 4th period\ntha. Sab class mein the aur main\nuske baare mein hi soch raha\ntha. Phir Sir bole,<\/p><p>Sir: \"Jay, kya haal hai?\"<\/p><p>Jay: \"Sir, theek hoon.\"<\/p><p>Sir: \"Achha hai.\"<\/p><p>Phir Sir apni class lene lage aur\nmain baithkar book par uska\nnaam Shree likh raha tha.<\/p>", "<p>Aur phir...<\/p><p>Hamara 6th period ground tha,\nya sports period tha, aur hame\nground mein jana tha.<\/p><p>Phir maine dekha ki Shree ki\nclass bhi ground mein aa rahi thi,\nkyunki woh period unka free\nperiod tha. Main Shree ko hi\ndekh raha tha. Udhar mera dost\nbol raha tha,<\/p><p>Dost: \"Jay, chale! Khel hamare\nsaath.\"<\/p>", "<p>Lekin main to Shree ko hi dekh\nraha tha...<\/p><p>Phir...<\/p><p>Shree ne mujhe dekh liya. Woh\nmere paas aa rahi thi. Main to\nthodi der ke liye jam hi gaya tha.\nShree: \"Jay, kaise ho? Tumse\nbahut dino baad mile.\"<\/p><p>Jay: \"Haan... main theek hoon.\nTum kaisi ho?\" (thartharate hue,\nya darte hue)<\/p>", "<p>Shree: \"Main theek hoon. Tumhe\nmera naam pata chal gaya?\"\n(Thoda muskurate hue, bahut\ncute lag rahi thi.)<\/p><p>Jay: \"Nahi...\" (Puri tarah jam gaya\ntha.)<\/p><p>Shree: \"Arre... mera naam Shree\nhai, Class 8th se.’<\/p><p>Jay: \"Achha... haan...\" (Thodi der\nshaant rehne ke baad)<\/p><p>\" Aur batao, kya chal raha hai?\"<\/p>", "<p>Shree: \"Sab achha hai.’<\/p><p>(Udhar Jay ke dost use dekhkar\nhans rahe the aur use chhed\nrahe the.)<\/p><p>Shree: \"Achha, suno.\"<\/p><p>Jay: \"Haan, bolo.\"<\/p><p>Vishu: \"Shreeee! Kahan ho tum?\"\n(Shree peeche dekhti hai.)\nVishu: \"Tum yahan ho...\"<\/p>", "<p>Shree: \"Haan, Vishu. Kya hua?\"\nVishu: \"Chalo udhar, hum sab\nkuch soch rahe hain.\"<\/p><p>Shree: \"Theek hai, chalo.\"<\/p><p>Phir Shree ne Jay ki taraf dekha\naur boli,<\/p><p>Shree: \"Jay, main tumse baad\nmein milti hoon. Bye...\"<\/p><p>Phir Shree wahan se chali jaati\nhai.<\/p>", "<p>Us waqt Jay bahut khush tha,\nkyunki Shree ne usse baat ki thi.\nJay to ab aur pyaar mein doobta\nja raha tha.<\/p><p>Phir aakhir mein Jay ke dost ne\nuse dekha aur bola,<\/p><p>Dost: \"Jayy! Baat karke kaisa lag\nraha hai? Tu to bahut khush ho\ngaya hoga.\"<\/p><p>Ab period khatam ho gaya aur\nhum class mein ja rahe the.<\/p><p>Tab Shree ne mujhe haath hila<\/p>", "<p>kar \"Bye\" kaha.<\/p><p>Main to sharm aur khushi ke\nmaare laal ho gaya tha. Mere\ndost mujhe aur chhed rahe the.\nPhir hum class mein the aur\nchhutti ka time ho raha tha.\nThodi der baad chhutti ho gayi.\nAur ye din Jay kabhi bhool nahi\nsaka.<\/p><p>Jay us waqt sirf ye soch raha tha\nki Shree kya kehna chahti thi.<\/p>", "<p>Aur...\nPhir...\nAgle din Jay bahut khush hua.\nTo Be Continued...<\/p>"]}, {"id": "ch6", "kicker": "Arc 2 · Roz Ka Intezaar", "title": "Library ki Khamoshi", "sub": "Chapter 6", "pages": ["<p>Chapter 6<\/p><p>Library ki Khamoshi\n\"Din bhar khayalon ki galiyon\nmein tera hinaam ghoomta hai...\"\nAur aaj mujhe ek kaam tha, isliye\nmain school jaldi chala gaya tha.\nMujhe class theek karni thi.\nPhir class ka time ho gaya aur\npadhai shuru ho gayi.\n1st period mein Sir padha rahe\nthe. Us waqt kuch khaas nahi ho\nraha tha. Sab bore ho rahe the<\/p>", "<p>aur main to sirf Shree ka naam\nhi likh raha tha aur uske baare\nmein soch raha tha...<\/p><p>\"Kaash... woh mere saath hoti,\nhaath mein haath daale hum\npark mein ghoom rahe hote.\nWoh us wagt bahut sundar lag\nrahi hoti. Meri nazar Shree se hi\nnahi hat rahi thi...\"<\/p><p>Phir 3rd period bhi beet gaya.\nJaise hi 3rd period khatam hua,\nbreak mein main corridor mein<\/p>", "<p>khada tha.<\/p><p>Tabhi meri nazar us par padi.\nShree us waqt neeche thi aur\nLibrary ki Mam usse kuch bol\nrahi thi.<\/p><p>Tabhi Piyu meri taraf bhaagte\nhue aaya aur bola,<\/p><p>Piyu: (Haafte hue) \"Bhai... tujhe\nLibrary ki Mam bula rahi hain.\"\nPiyu: \"Chal bhi...\"<\/p>", "<p>Jay: \"Theek hai... chalo.\"<\/p><p>Phir hum Mam ke paas gaye.\nMam neeche khadi thi.<\/p><p>Jab hum wahan pahunche, tab\nShree ja rahi thi.<\/p><p>Phir Mam mujhe boli,<\/p><p>Mam: \"Jay, kaise ho?\"<\/p><p>Jay: \"Main theek hoon, Mam.\"\nMam: \"Suno Jay, kya tum 4th<\/p>", "<p>period se chhutti tak library mein\nreh sakte ho?\"<\/p><p>Jay: \"Mam... haan, reh sakta\nhoon.\"<\/p><p>Mam: \"Theek hai. Break ki first\nbell ke baad library mein aa jana.\"\nJay: \"Theek hai, Mam.\"<\/p><p>Phir Piyu bola,<\/p><p>Piyu: \"Oho... teri to maze hain.\"\nJay: \"hee ha Tu bhi chala ga .\"<\/p>", "<p>Piyu: \"Na... na...\"<\/p><p>Phir main class mein gaya aur\napna bag theek se rakha.<\/p><p>Break bhi khatam ho gaya.<\/p><p>Aur main library ki taraf ja raha\ntha...<\/p><p>Piyu: \"Jay... maze karna!\"<\/p><p>Main soch raha tha ki Piyu itna\nkyun bol raha hai aur aakhir hone\nkya wala hai.<\/p>", "<p>Main library ke paas pahuncha.\nMaine dekha ki Shree library ke\nandar enter kar rahi thi.<\/p><p>Tab mujhe samajh aaya ki Piyu\nbaar-baar kyun keh raha tha,\n\"Tujhe maze aayenge.\"<\/p><p>Main library ke andar gaya.\nShree ne mujhe dekha.<\/p><p>Woh muskura kar haath hilaate\nhue dhera sa boli,<\/p>", "<p>Shree: \"Hii...\"<\/p><p>Phir Mam boli,<\/p><p>Mam: \"Tum dono ko chhutti tak\nlibrary mein rukna hai. Books aur\nshelves ko theek se arrange\nkarna hai. Kar loge na? Koi\nproblem to nahi?\"<\/p><p>Shree: \"Nahi Mam, koi problem\nnahi hai.\"<\/p><p>Jay: \"Okay Mam.\"<\/p>", "<p>Mam: \"Theek hai. Main ja rahi\nhoon. Tum dono library mein hi\nrehna. Bye.’<\/p><p>Ab library mein sirf Jay aur Shree\nthe...<\/p><p>Jay to mann hi mann bahut\nkhush tha.<\/p><p>Phir Shree boli,<\/p><p>Shree: \"Jay, kaise ho?\"<\/p><p>Jay: (Thartharate hue) \"Main\ntheek hoon. Tum kaisi ho?\"<\/p>", "<p>Shree: \"Main bhi achhi hoon.\"\nShree: \"Chalo, ab kaam bhi kar\nlete hain.\"<\/p><p>Jay: \"Theek hai... haan.\"<\/p><p>Phir dono books ko sahi karne\nlage.<\/p><p>Achanak Shree ke haath se ek\nbook gir gayi.<\/p><p>Lekin Jay ne us book ko girne se\nbacha liya.<\/p>", "<p>Shree thodi ghabra gayi thi.\nJay ne book uthakar table par\nrakh di.<\/p><p>Phir Shree boli,<\/p><p>Shree: \"Sorry... galti se gir gayi.\"\nJay: \"Sorry mat bolo... koi baat\nnahi.\"<\/p><p>Phir Shree ne poocha, (halki si\nsmile karte hue)<\/p>", "<p>Shree: \"Jay... ek baat poochun?\"\nJay... (Thoda nervous<\/p><p>hokar)\".\"<\/p><p>Shree: \"Kya tum mere friend<\/p><p>banoge?\"<\/p><p>Jay bahut khush ho gaya aur<\/p><p>bola,<\/p><p>Jay: \"Hum to dost hi hain na.\"<\/p><p>Shree: \"Haan...\" (Khush hote hue)<\/p><p>Main mann hi mann bahut khush<\/p><p>tha. Main to apni hi khushi mein<\/p><p>kho gaya tha.<\/p>", "<p>Phir main books ko table par\nsahi kar raha tha aur unhe shelf\nmein rakh raha tha.<\/p><p>Isi mein 4th period khatam ho\ngaya.<\/p><p>Shree thak gayi thi, lekin baithi\nnahi thi.<\/p><p>Jay bola,<\/p><p>Jay: \"Shree... tum baith jao,\nplease.\"<\/p>", "<p>Shree: \"Hmm... lekin tum bhi\nbaitho.\"<\/p><p>Phir dono ne books side mein\nrakhi aur chair par baith gaye.\nDono ek saath baithe the. Jay,\nShree ke paas hi baitha tha.\nPhir Shree boli,<\/p><p>Shree: \"Aaj hame chhutti tak\nyahin library mein rehna hai...\"\n(Thoda muskura kar)<\/p><p>Jay: \"Haan... tumhe koi problem<\/p>", "<p>to nahi hai na?\" (Sochte hue)\nShree: \"Nahi... mujhe to khushi\nho rahi hai.\"<\/p><p>Jay mann hi mann soch raha tha,\n\"Yaar... Shree kitni cute lagti hai.\"\nTabhi Shree boli,<\/p><p>Shree: \"Tum cute lagte ho...\nkabhi-kabhi.\"<\/p><p>Jay: \"Kya...?\" (Chonk jaata hai\naur sharma kar laal ho jaata hai.)<\/p>", "<p>Shree: \"Haan...\" (Hanste hue)\nShree: \"Tum laal ho gaye ho.\"\nJay: \"Haan...\"<\/p><p>Phir Jay bola,<\/p><p>Jay: \"Tum to bahut cute lagti ho\naur sundar bhi ho... meri nazron\nmein.’<\/p><p>Shree: \"Kya...? Sach mein?\"\n(Shree sharma gayi.)<\/p>", "<p>Jay: \"Haan...\"<\/p><p>Jay: \"Sorry...\"<\/p><p>Jay mann hi mann sochne laga,\n‘Arre... ye maine kya bol diya...\"\nShree: \"Koi baat nahi.\"<\/p><p>Us waqt Shree bahut hi cute lag\nrahi thi.<\/p><p>Phir dono books ko shelves par\nrakhne lage.<\/p>", "<p>Main soch raha tha,<\/p><p>‘Arre... ye maine kya bol diya? Ab\nShree kya soch rahi hogi...\"<\/p><p>Jay baar-baar Shree ko dekh\nraha tha.<\/p><p>Shree mann hi mann soch rahi\nthi,<\/p><p>‘Arre... ye kitna achha hai... ye to\nbilkul pagle hai...\"<\/p><p>Isi tarah 5th period bhi beet gaya.<\/p>", "<p>Ab sirf 3 periods aur bache the,\njo Shree aur Jay ko aur nazdeek\nla rahe the.<\/p><p>Phir 6th bell hui.<\/p><p>Shree Jay ki taraf dekhte hue boli,\nShree: \"Jay...\"<\/p><p>Jay: \"Haan, bolo.\"<\/p><p>Shree: \"Ye books rakhne mein\nmeri madad kar do.\"<\/p><p>Jay: \"Theek hai.\"<\/p>", "<p>Shree Jay ki taraf aa rahi thi.\nLekin tabhi uska pair takra gaya\naur woh girne wali thi.<\/p><p>Lekin Jay ne turant Shree ko\npakad liya.<\/p><p>Ab...<\/p><p>Shree, Jay ki baahon mein thi.\nShree ki aankhen band ho gayi\nthi.<\/p>", "<p>Jab usne aankhen kholi, to woh\nJay ki baahon mein thi aur Jay\nne use sambhal rakha tha.<\/p><p>Us waqt Shree bahut hi cute lag\nrahi thi.<\/p><p>Shree sharma gayi thi.<\/p><p>Jay ke baal bhi thode bikhar\ngaye the.<\/p><p>Shree sambhal kar khadi hui aur\nboli,<\/p><p>Shree: \"Thanks... mujhe bachane<\/p>", "<p>ke liye.\"<\/p><p>Jay: \"Koi baat nahi.\"<\/p><p>Phir dono kuch der ke liye\nawkward ho gaye.<\/p><p>Jay aur Shree dono ke chehre\nsharm se laal ho gaye the.\nPhir dono baith gaye.<\/p><p>Jay soch raha tha,<\/p><p>‘Arre... ye kya ho gaya... lekin\nmaine Shree ko bacha liya...\"<\/p>", "<p>Shree boli,<\/p><p>Shree: \"Jay... itna mat socho.\nMain jaanti hoon, usme meri hi\ngalti thi.\"<\/p><p>Jay: \"Nahi, nahi... koi baat nahi.\nTum theek ho na? Kahin chot to\nnahi lagi?\" (Thoda ghabraate\nhue.)<\/p><p>Shree: \"Nahi... nahi... main theek\nhoon.\" (Thoda hanste hue.)<\/p><p>Phir Mam aayi aur boli,<\/p>", "<p>Mam: \"Lo, paani piyo.\"<\/p><p>Mam: \"Kaafi thak gaye hoge na?\"\nShree: \"Nahi Mam, hum bas\nthodi der se baithe hue hain.\"\nJay: \"Haan, Mam.\"<\/p><p>Mam: \"Koi baat nahi. Abhi do\nperiods aur hain, phir ghar chale\njana.\"<\/p><p>Mam: \"Main chalti hoon, mujhe\nkaam hai.\"<\/p>", "<p>Shree: \"Okay, Mam.\"<\/p><p>Jay: \"Theek hai, Mam.\"<\/p><p>Phir thodi der baad Shree, Jay se\nbaatein karne lagi.<\/p><p>Jay to mann hi mann bahut\nkhush tha, kyunki Shree uske\nsaath thi.<\/p><p>Main to Shree ke liye pagle sa ho\nraha tha.<\/p><p>Shree: \"Jayy... tumhari koi<\/p>", "<p>girlfriend hai?\" (Achanak\npoochhti hai.)<\/p><p>Main us waqt books rakh raha\ntha. Ye sunte hi main ekdum\nchauk gaya.<\/p><p>Jay: \"Nahi... ha likne kyu?\"\n(Sochte hue.)<\/p><p>Shree: \"Kisi se pyaar karte ho\nkya?\"<\/p><p>Jay: \"Haan... karta to hoon.\"\n(Mann hi mann: \"Ye maine kya\nbol diya...\")<\/p>", "<p>Shree: \"Hmm... achha hai.”<\/p><p>Phir Shree hanste hue boli,\nShree: \"Main ban jaun tumhari\nbabu?\" ( nervouse ho kare )\nJay: \"Arre... kya?\" (Chonk jaata\nhai.)<\/p><p>Shree: \"Arre... mazaak tha. Main\nto bas fluting kar rahi thi.\"<\/p><p>Jay: \"Hmm... kaya ...\" (Thoda\nghabraate hue.)<\/p>", "<p>Shree: \"Haan...\"<\/p><p>Phir baaton hi baaton mein 7th\nbell bhi khatam ho gayi.<\/p><p>Ab 8th bell mein dono ka kaam\nkhatam ho gaya tha.<\/p><p>Shree aur Jay dono baithe the\naur ek doosre se baatein kar\nrahe the.<\/p><p>Or dono or close ho raha tha\nAb dono aur achhe dost ban\ngaye the.<\/p>", "<p>Phir...<\/p><p>Shree: \"Jay... ab saara kaam ho\ngaya. Ab hum aaram kar lete\nhain.\"<\/p><p>Jay: \"Haan, ye to hai.’<\/p><p>Main to bas Shree ko hi dekh\nraha tha.<\/p><p>Phir Shree boli,<\/p><p>Shree: \"Ab bell bajne mein 15\nminute hain. To ab kya karein?<\/p>", "<p>Kyun na thodi baatein karein?\"\nJay: \"Theek hai, jasa tum bolo.\"\nPhir hum baatein karne lage.\nMain to bas use hi dekh raha tha.\nWoh us waat bahut hi cute aur\nbahut sundar lag rahi thi.<\/p><p>Tabhi bell baji.<\/p><p>Mam aayi aur boli,<\/p><p>Mam: \"Tum dono ka shukriya.<\/p>", "<p>Thank you, help karne ke liye.\"\nShree: \"Koi baat nahi, Mam.\nHame bhi madad karke achha\nlaga.\"<\/p><p>Jay: \"Haan.\"<\/p><p>Mam: \"Theek hai, ab tum dono\njao. Thanks.\"<\/p><p>Shree: \"Okay, Mam. Bye.\"<\/p><p>Jay: \"Okay, Mam.\"<\/p><p>Shree aur Jay ek saath ja rahe<\/p>", "<p>the.<\/p><p>Tabhi Vishu aa gayi aur boli,\nVishu: \"Shree... kahan thi tum?\nMaine tumhe bahut miss kiya.\"\nShree: \"Arre, main to...\"<\/p><p>Phir Shree, Jay se boli,<\/p><p>Shree: \"Jay... bye. Main class\nmein ja rahi hoon. Aur kal milte\nhain, theek?\"<\/p><p>Jay: \"Theek hai... bye.\"<\/p>", "<p>Main Shree ko jaate hue dekhta\nraha.<\/p><p>Phir main bhi class ki taraf chala\ngaya.<\/p><p>Jab main class mein pahuncha,\ntab sab aa chuke the.<\/p><p>Lekin main to ab bhi sirf Shree\nke baare mein hi soch raha tha.\nPhir chhutti ho gayi.<\/p><p>Main ghar ja raha tha, tabhi<\/p>", "<p>peeche se Piyu bola,<\/p><p>Piyu: \"Jayy...\"<\/p><p>Jay: \"Haan, bol.\"<\/p><p>Piyu: \"Maza aaya library mein?\"\n(Chhedte hue.) \"Mujhe pata tha\nki wahan kaun hai.\"<\/p><p>Jay: \"Haan... chale ab mujhe\njaane de.\"<\/p><p>Piyu: \"Theek hai, ja.\"<\/p><p>Phir main road par tha.<\/p>", "<p>Main ghar ja raha tha.\nAur abhi to meri kahani shuru hui\nthi...\n\"Kyuki zindagi wahi se shuru hoti\nhai, jahan se ek khaas shakhs\nhamari zindagi mein aata hai.\"\nAur phir...\nagla din...\nTo Be Continued...<\/p>"]}];
+let ci=0,pi=0,animating=false;
+const index=document.getElementById('index'),reader=document.getElementById('reader');
+
+// Light editorial cleanup: preserves the supplied story while fixing presentation,
+// capitalization of recurring names/roles, and a few obvious spelling slips.
+function polishStory(html){
+  const fixes=[
+    [/\bjay\b/gi,'Jay'],[/\bshree\b/gi,'Shree'],[/\bpiyu\b/gi,'Piyu'],[/\bsoniya\b/gi,'Soniya'],[/\bvishu\b/gi,'Vishu'],[/\bmam\b/gi,'Mam'],[/\bsir\b/gi,'Sir'],
+    [/\bnational level\b/gi,'National Level'],[/\bto be continued\.?/gi,'To Be Continued…'],[/\bto continued\.?/gi,'To Be Continued…'],
+    [/\bfluting\b/gi,'flirting'],[/\bnervouse\b/gi,'nervous'],[/\bsemi-final\b/gi,'Semi-Final']
+  ];
+  for(const [re,v] of fixes) html=html.replace(re,v);
+  // Make recurring dialogue labels visually consistent without changing dialogue wording.
+  html=html.replace(/<(p|div)>\s*(Jay|Shree|Piyu|Soniya|Vishu|Mam|Sir)\s*:/gi,'<$1><strong>$2:</strong>');
+  return html;
+}
+function pageMarkup(c, page){
+  return `<div class="kicker">${c.kicker}</div><div class="title">${c.title}</div><div class="sub">${c.sub}</div><div class="rule"></div><div class="page-text">${polishStory(page)}</div><div class="page-no">— ${pi+1} —</div>`;
+}
+function buildIndex(){
+ index.innerHTML='';
+ chapters.forEach((c,i)=>{
+  const b=document.createElement('button');b.className='tab';b.textContent=c.sub+' · '+c.title;
+  b.onclick=()=>openChapter(i);index.appendChild(b);
+ });
+}
+function chapterButtons(){document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',j===ci));}
+function makeBook(direction=0,oldMarkup=null){
+ const c=chapters[ci], page=c.pages[pi];
+ const book=document.createElement('div');book.className='book';
+ const base=document.createElement('div');base.className='page-layer base';base.innerHTML=pageMarkup(c,page);
+ book.appendChild(base);
+ if(oldMarkup){
+   const flip=document.createElement('div');flip.className='page-layer flip '+(direction>0?'next':'prev');flip.innerHTML=oldMarkup;book.appendChild(flip);
+   setTimeout(()=>flip.remove(),760);
+ }
+ return book;
+}
+function updateUI(){
+ const c=chapters[ci];
+ document.getElementById('counter').textContent=(ci+1)+' / '+chapters.length;
+ document.getElementById('chapterLabel').textContent=c.kicker+'  ·  '+c.title;
+ document.getElementById('pagecount').textContent='Page '+(pi+1)+' / '+c.pages.length;
+ document.getElementById('prev').disabled=(ci===0&&pi===0);
+ document.getElementById('next').disabled=(ci===chapters.length-1&&pi===c.pages.length-1);
+ chapterButtons();
+}
+function render(){reader.replaceChildren(makeBook());updateUI();}
+function openChapter(i){if(animating)return;ci=i;pi=0;render();window.scrollTo({top:0,behavior:'smooth'});}
+function turnPage(dir){
+ if(animating)return;
+ const oldChapter=ci, oldPage=pi, oldC=chapters[ci];
+ let npi=pi+dir,nci=ci;
+ if(npi<0){if(ci===0)return;nci--;npi=chapters[nci].pages.length-1}
+ if(npi>=oldC.pages.length){if(ci===chapters.length-1)return;nci++;npi=0}
+ const oldMarkup=pageMarkup(oldC,oldC.pages[oldPage]);
+ ci=nci;pi=npi;animating=true;
+ reader.replaceChildren(makeBook(dir,oldMarkup));updateUI();
+ setTimeout(()=>{animating=false;},780);
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowLeft'){e.preventDefault();turnPage(-1)}
+ if(e.key==='ArrowRight'){e.preventDefault();turnPage(1)}
+});
+let sx=0,sy=0;
+reader.addEventListener('touchstart',e=>{sx=e.changedTouches[0].screenX;sy=e.changedTouches[0].screenY},{passive:true});
+reader.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-sx;const dy=e.changedTouches[0].screenY-sy;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.15)turnPage(dx<0?1:-1)},{passive:true});
+buildIndex();render();
+</script>
+</body></html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hamara Safar — Community Dashboard. Community wall.">
+<title>Dashboard · Hamara Safar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Caveat:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: #060a14;
+  color: #a8b4c8;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(58, 90, 124, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(45, 60, 90, 0.1) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(20, 25, 40, 0.5) 0%, #060a14 70%);
+  pointer-events: none;
+}
+
+/* Floating particles */
+.particle {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
+  background: rgba(138, 154, 176, 0.15);
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, rgba(6,10,20,0.95) 0%, transparent 100%);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 4px;
+  color: #8a9ab0; text-decoration: none;
+  text-shadow: 0 0 12px rgba(138, 154, 176, 0.3);
+}
+.nav-back {
+  font-size: 12px; letter-spacing: 2px;
+  color: rgba(168, 180, 200, 0.5); text-decoration: none;
+  text-transform: uppercase; border: 1px solid rgba(138, 154, 176, 0.2);
+  padding: 7px 16px; border-radius: 20px; transition: all 0.3s ease;
+}
+.nav-back:hover {
+  color: #8a9ab0; border-color: rgba(138, 154, 176, 0.5);
+  background: rgba(30, 40, 60, 0.35);
+}
+
+/* Hero */
+.hero {
+  position: relative; z-index: 10;
+  padding: 110px 24px 40px; text-align: center;
+  max-width: 720px; margin: 0 auto;
+}
+.hero-kicker {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px;
+  text-transform: uppercase; color: rgba(138, 154, 176, 0.55);
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-family: 'Cinzel', serif; font-size: clamp(28px, 6vw, 42px);
+  font-weight: 700; color: #8a9ab0; letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(90, 120, 160, 0.4), 0 0 50px rgba(60, 90, 130, 0.2);
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-family: 'Caveat', cursive; font-size: clamp(20px, 3.5vw, 28px);
+  color: rgba(168, 180, 200, 0.6); margin-bottom: 18px;
+}
+.hero-desc {
+  font-size: 15px; line-height: 1.7;
+  color: rgba(168, 180, 200, 0.55); max-width: 520px; margin: 0 auto;
+}
+
+/* Stats bar */
+.stats-bar {
+  position: relative; z-index: 10;
+  max-width: 720px; margin: 0 auto 30px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  padding: 0 20px;
+}
+.stat-pill {
+  background: rgba(15, 23, 41, 0.6);
+  border: 1px solid rgba(138, 154, 176, 0.12);
+  border-radius: 12px; padding: 16px 10px; text-align: center;
+  backdrop-filter: blur(10px);
+}
+.stat-pill .num {
+  font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700;
+  color: #8a9ab0; line-height: 1;
+}
+.stat-pill .label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(168, 180, 200, 0.4); margin-top: 6px;
+}
+
+/* Main */
+.main {
+  position: relative; z-index: 10;
+  max-width: 900px; margin: 0 auto;
+  padding: 10px 20px 80px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center; padding: 80px 24px;
+  border: 1px dashed rgba(138, 154, 176, 0.15);
+  border-radius: 16px; margin: 20px 0;
+}
+.empty-state .moon-icon {
+  font-size: 48px; margin-bottom: 16px; opacity: 0.3;
+}
+.empty-state h3 {
+  font-family: 'Cinzel', serif; font-size: 18px; color: rgba(138, 154, 176, 0.6);
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+.empty-state p {
+  font-size: 14px; color: rgba(168, 180, 200, 0.35); line-height: 1.6;
+}
+
+/* Submission cards */
+.submissions-list {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.sub-card {
+  background: rgba(12, 18, 32, 0.6);
+  border: 1px solid rgba(138, 154, 176, 0.1);
+  border-radius: 14px;
+  padding: 22px 24px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.sub-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+  background: linear-gradient(180deg, rgba(138,154,176,0.4), transparent);
+  opacity: 0.6;
+}
+.sub-card:hover {
+  border-color: rgba(138, 154, 176, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.sub-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px; margin-bottom: 10px;
+}
+.sub-name {
+  font-family: 'Cinzel', serif; font-size: 16px; color: #a8b4c8;
+  letter-spacing: 1px;
+}
+.sub-badge {
+  display: inline-block; padding: 4px 12px;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 20px; font-weight: 600;
+}
+.badge-story { background: rgba(74, 111, 165, 0.15); color: #6b8cae; border: 1px solid rgba(74,111,165,0.2); }
+.badge-poem { background: rgba(100, 120, 160, 0.15); color: #7a8faa; border: 1px solid rgba(100,120,160,0.2); }
+.badge-comic { background: rgba(90, 100, 140, 0.15); color: #6a7a9a; border: 1px solid rgba(90,100,140,0.2); }
+.badge-letter { background: rgba(120, 130, 160, 0.15); color: #8a9aaa; border: 1px solid rgba(120,130,160,0.2); }
+.badge-art { background: rgba(80, 110, 150, 0.15); color: #5a7a9a; border: 1px solid rgba(80,110,150,0.2); }
+.badge-other { background: rgba(100, 100, 120, 0.15); color: #7a7a8a; border: 1px solid rgba(100,100,120,0.2); }
+
+.sub-title {
+  font-family: 'Caveat', cursive; font-size: 20px;
+  color: rgba(168, 180, 200, 0.7); margin-bottom: 8px;
+}
+.sub-meta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 12px; color: rgba(168, 180, 200, 0.35);
+}
+.sub-meta span {
+  display: flex; align-items: center; gap: 4px;
+}
+.sub-body {
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px solid rgba(138, 154, 176, 0.08);
+  font-size: 14px; line-height: 1.7;
+  color: rgba(168, 180, 200, 0.5);
+  max-height: 120px; overflow: hidden;
+  position: relative;
+}
+.sub-body::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+  background: linear-gradient(transparent, rgba(12,18,32,0.9));
+}
+.sub-link {
+  margin-top: 10px;
+}
+.sub-link a {
+  color: #6b8cae; font-size: 12px; text-decoration: none;
+  border-bottom: 1px solid rgba(107,140,174,0.2);
+}
+.sub-link a:hover { border-bottom-color: #6b8cae; }
+
+/* Footer */
+.footer {
+  position: relative; z-index: 10; text-align: center;
+  padding: 40px 24px 60px;
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 2px; color: rgba(138, 154, 176, 0.25);
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(25px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 560px) {
+  .stats-bar { grid-template-columns: 1fr; }
+  .sub-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<style id="arabian-midnight-theme">
+html, body {
+  min-height: 100%;
+}
+body {
+  background-image:
+    linear-gradient(rgba(5,3,12,.72), rgba(5,3,12,.78)),
+    url("assets/persian-midnight.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-color: #07040d !important;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,214,160,.12), transparent 22%),
+    radial-gradient(circle at 82% 12%, rgba(157,121,255,.13), transparent 25%),
+    radial-gradient(circle at 50% 90%, rgba(218,145,67,.10), transparent 28%);
+  mix-blend-mode: screen;
+}
+/* Gentle Arabian-night glass treatment without changing page structure. */
+.hero, .page > section, .card, .panel, .container, .content, main > section {
+  backdrop-filter: blur(2px);
+}
+</style>
+<style id="persian-midnight-global">html,body{background:#061022 url("assets/persian-midnight.png") center center/cover fixed no-repeat !important;}body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(3,7,20,.48),rgba(3,7,20,.62));pointer-events:none;}</style><style id="hs-scene-background">
+/* ===== Humara Safar — Persian Midnight Scene Backgrounds ===== */
+html, body { min-height: 100%; }
+body.hs-scene-bg {
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-color: #050812 !important;
+}
+body.hs-scene-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--hs-scene-image) center center / cover no-repeat;
+  transform: scale(1.015);
+}
+body.hs-scene-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3,7,18,.22), rgba(3,6,16,.66)),
+    radial-gradient(circle at 50% 20%, rgba(26,71,112,.10), transparent 52%);
+}
+body.hs-scene-bg > * { position: relative; z-index: 0; }
+
+/* Keep reading text comfortable over the palace background. */
+body.hs-read-scene .reader-shell,
+body.hs-read-scene .book-shell,
+body.hs-read-scene .reader,
+body.hs-read-scene .book {
+  isolation: isolate;
+}
+body.hs-read-scene .book-page,
+body.hs-read-scene .page,
+body.hs-read-scene .sheet,
+body.hs-read-scene .book-paper {
+  box-shadow:
+    0 26px 70px rgba(0,0,0,.55),
+    0 0 0 1px rgba(206,167,91,.28);
+}
+
+/* Give scene-based pages a cinematic glass layer without washing out the art. */
+body.hs-scene-bg .panel,
+body.hs-scene-bg .card,
+body.hs-scene-bg .glass,
+body.hs-scene-bg .section-card {
+  backdrop-filter: blur(3px);
+}
+@media (max-width: 700px) {
+  body.hs-scene-bg::before { background-position: center center; }
+  body.hs-scene-bg::after { background: linear-gradient(180deg, rgba(3,7,18,.34), rgba(3,6,16,.74)); }
+}
+
+body.hs-scene-bg { --hs-scene-image: url('assets/bg-palace.png'); }</style>
+</head>
+<body style="background:#060910;color:#e8e4d9" class="hs-scene-bg">
+
+<nav class="nav">
+  <a href="home.html" class="nav-logo">HAMARA SAFAR</a>
+  <a href="home.html" class="nav-back">← Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-kicker">Community · Midnight Wall</div>
+  <h1 class="hero-title">DASHBOARD</h1>
+  <div class="hero-sub">Har kahaani ka ek hissa yahan milta hai</div>
+  <p class="hero-desc">
+    Yeh woh jagah hai jahan har writer ka naam likha jata hai.<br>
+    Apni kahani share karne ke liye Instagram @jaystory_2605 par message karein ya Email karein: Jayxbook2605@gamil.com
+  </p>
+</section>
+
+<div class="stats-bar reveal">
+  <div class="stat-pill">
+    <div class="num" id="totalCount">0</div>
+    <div class="label">Total Submissions</div>
+  </div>
+  <div class="stat-pill">
+    <div class="num" id="storyCount">0</div>
+    <div class="label">Stories</div>
+  </div>
+  <div class="stat-pill">
+    <div class="num" id="poemCount">0</div>
+    <div class="label">Poems</div>
+  </div>
+</div>
+
+<main class="main" id="mainArea">
+  <!-- Submissions render here -->
+</main>
+
+<footer class="footer">HAMARA SAFAR · Midnight echoes of every heart</footer>
+
+<script>
+(function() {
+  const container = document.getElementById('mainArea');
+  const submissions = JSON.parse(localStorage.getItem('hamara_safar_submissions') || '[]');
+
+  // Sort newest first
+  submissions.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+  // Update stats
+  document.getElementById('totalCount').textContent = submissions.length;
+  document.getElementById('storyCount').textContent = submissions.filter(s => s.work_type === 'story').length;
+  document.getElementById('poemCount').textContent = submissions.filter(s => s.work_type === 'poem').length;
+
+  if (submissions.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state reveal">
+        <div class="moon-icon">🌙</div>
+        <h3>Abhi koi submission nahi</h3>
+        <p>Pehli kahani bhejne wale baniye.<br>Yahan unke naam ka chand chamkega.</p>
+      </div>
+    `;
+  } else {
+    const badgeClass = {
+      story: 'badge-story', poem: 'badge-poem', comic: 'badge-comic',
+      letter: 'badge-letter', art: 'badge-art', other: 'badge-other'
+    };
+    const badgeLabel = {
+      story: 'Story', poem: 'Poem', comic: 'Comic',
+      letter: 'Letter', art: 'Art', other: 'Other'
+    };
+
+    let html = '<div class="submissions-list">';
+    submissions.forEach((sub, i) => {
+      const date = sub.timestamp ? new Date(sub.timestamp).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) : 'Just now';
+      const lang = sub.language ? sub.language.charAt(0).toUpperCase() + sub.language.slice(1) : 'Hinglish';
+      html += `
+        <div class="sub-card reveal" style="transition-delay:${Math.min(i*0.05,0.3)}s">
+          <div class="sub-header">
+            <div class="sub-name">${escapeHtml(sub.author || 'Anonymous')}</div>
+            <span class="sub-badge ${badgeClass[sub.work_type] || 'badge-other'}">${badgeLabel[sub.work_type] || 'Other'}</span>
+          </div>
+          <div class="sub-title">${escapeHtml(sub.title || 'Untitled')}</div>
+          <div class="sub-meta">
+            <span>🌙 ${date}</span>
+            <span>📝 ${lang}</span>
+            <span>📄 ${(sub.body || '').length} chars</span>
+          </div>
+          <div class="sub-body">${escapeHtml(sub.body || '').substring(0, 300)}${(sub.body || '').length > 300 ? '...' : ''}</div>
+          ${sub.link ? `<div class="sub-link"><a href="${escapeHtml(sub.link)}" target="_blank" rel="noopener">🔗 Link attached</a></div>` : ''}
+        </div>
+      `;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
